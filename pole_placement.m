@@ -24,7 +24,7 @@ lamda6 = -4.0;
 polynomial = (s-lamda1)*(s-lamda2)*(s-lamda3)*(s-lamda4)*(s-lamda5)*(s-lamda6);
 pol_cof = double(coeffs(polynomial));
 
-p = [lamda1 lamda2, lamda3 lamda4 lamda5 lamda6];
+p = [lamda1 lamda2 lamda3 lamda4 lamda5 lamda6];
 K11 = place(A,B,p);
 
 Ad = [0   1   0   0   0   0;

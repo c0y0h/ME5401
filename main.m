@@ -54,26 +54,83 @@ K2 = lqr_control(A, B);
 %  and the initial response with respect to x0 of the decoupled system 
 %  to support your conclusion.
 C2=[1 0 0 0 0 0; 0 0 1 0 0 0];
-% A=[0 1;-1 -2];
-% B=[1 0;0 1];
-% C2=[1 0.5; 1 1];
+
+%   1. state feedback
 [K4,F4]=decoupler_sf(A,B,C2);
-%%
+syms s;
+H = C2/(s*eye(6)-A+B*K4)*B*F4;
+
+[numerator,denominator]=numden(H);
+n11=double(coeffs(numerator(1,1)));
+n22=double(coeffs(numerator(2,2)));
+d11=double(coeffs(denominator(1,1)));
+d22=double(coeffs(denominator(2,2)));
+G11=tf(n11,d11);
+figure(1);
+step(G11);
+G22=tf(n22,d22);
+figure(2);
+step(G22);
+
+%   check, not internally stable
 D=zeros(2,2);
 Bf=B*F4;
 Af=A-B*K4;
 decouple_model=ss(Af,Bf,C2,D);
-p=pole(decouple_model);
+p=pole(decouple_model)
 
-% syms s;
-% H=C2*inv(s*eye(2)-Af)*Bf;
+
+% %   generalize method
+% damp = 0.707;
+% wn = 1.13;
+% lamda1 = -damp*wn + wn*sqrt(1-damp*damp)*1i;
+% lamda2 = -damp*wn - wn*sqrt(1-damp*damp)*1i;
+% lamda3 = -1.6;
+% lamda4 = -2.4;
+% lamda5 = -3.2;
+% lamda6 = -4.0;
+% p = [lamda1 lamda2 lamda3 lamda4 lamda5 lamda6];
+% 
+% Gkl=decoupling_pole(A,B,C2,D,p);
+% 
+% [numerator,denominator]=numden(Gkl);
+% n11=double(coeffs(numerator(1,1)));
+% n12=double(coeffs(numerator(1,2)));
+% n21=double(coeffs(numerator(2,1)));
+% n22=double(coeffs(numerator(2,2)));
+% d11=double(coeffs(denominator(1,1)));
+% d12=double(coeffs(denominator(1,2)));
+% d21=double(coeffs(denominator(2,1)));
+% d22=double(coeffs(denominator(2,2)));
+% G11=tf(n11,d11);
+% figure(1);
+% step(G11);
+% G22=tf(n22,d22);
+% figure(2);
+% step(G22);
+%%
+%   2. output feedback
+[Kd,Ks,H]=decoupler_of(A,B,C2);
+
+
+[K41,K411] = pole_placement(A-B*Kd, B);
+
+[numerator,denominator]=numden(H);
+n11=double(coeffs(numerator(1,1)));
+n12=double(coeffs(numerator(1,2)));
+n21=double(coeffs(numerator(2,1)));
+n22=double(coeffs(numerator(2,2)));
+d11=double(coeffs(denominator(1,1)));
+d12=double(coeffs(denominator(1,2)));
+d21=double(coeffs(denominator(2,1)));
+d22=double(coeffs(denominator(2,2)));
+
+G11=tf(n11,d11);
+step(G11);
+
+
 %%
 
-t = 0 : 0.1 : 30;
-u1 = [ones(size(t,2),1),zeros(size(t,2),1)];
-x = zeros(6,1);
-[y, tout, x] = lsim(decouple_model, u1, t, x0);
-plot(t,x);
 
 
 
