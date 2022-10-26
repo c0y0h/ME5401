@@ -6,26 +6,28 @@
 function [K11,K] = pole_placement(A, B)
 
 syms s;
-damp = 0.707;
-% damp = 0.595;
-wn = 1.13;
-lamda1 = -damp*wn + wn*sqrt(1-damp*damp)*1i;
-lamda2 = -damp*wn - wn*sqrt(1-damp*damp)*1i;
+% damp = 0.707;
+damp = 0.8;
+% wn = 1.13;
+wn = 1.25;
+lamda1 = -2.5*(damp*wn + wn*sqrt(1-damp*damp)*1i);
+lamda2 = -2.5*(damp*wn - wn*sqrt(1-damp*damp)*1i);
 %   2 times faster
-lamda3 = -1.6;
-lamda4 = -2.4;
-% lamda3 = -2.4 + wn*sqrt(1-damp*damp)*1i;
-% lamda4 = -2.4 - wn*sqrt(1-damp*damp)*1i;
+% lamda3 = -4.5*1.5*damp*wn;
+% lamda4 = -5.0*1.5*damp*wn;
+lamda3 = -5*damp*wn*2.5;
+lamda4 = -5.5*damp*wn*2.5;
 %   4 times faster
-lamda5 = -3.2;
-lamda6 = -4.0;
-% lamda5 = -4.0 + wn*sqrt(1-damp*damp)*1i;
-% lamda6 = -4.0 - wn*sqrt(1-damp*damp)*1i;
+% lamda5 = -5.5*1.5*damp*wn;
+% lamda6 = -6.0*1.5*damp*wn;
+lamda5 = -6.0*damp*wn*2.5;
+lamda6 = -6.5*damp*wn*2.5;
 polynomial = (s-lamda1)*(s-lamda2)*(s-lamda3)*(s-lamda4)*(s-lamda5)*(s-lamda6);
 pol_cof = double(coeffs(polynomial));
 
 p = [lamda1 lamda2 lamda3 lamda4 lamda5 lamda6];
 K11 = place(A,B,p);
+% K11=acker(A,B,p);
 
 Ad = [0   1   0   0   0   0;
       0   0   1   0   0   0;
