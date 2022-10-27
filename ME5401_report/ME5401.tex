@@ -421,9 +421,54 @@
 	\hspace{1.0em}
 	With refinements on feedback gain matrix $K$, the overshoot of the closed-loop system is largely cut down as well as its sensitivity to noise. On the other side, the system performance is also largely affected by different pole choosing strategies. Although one can always stablize the system and make system response faster by designing poles on the very left plain, the input cost will increase in this case. To investigate the influence of poles, two more groups of poles are used. The new poles are listed as followings
 	
+	\begin{equation}
+	\begin{split}
+	\begin{aligned}
+	{p}'&= \begin{bmatrix}
+	-1.6+j0.96 &-1.6-j0.96  &-6.4  &-6.88  &-7.36  &-8
+	\end{bmatrix}\\
+	{p}''&= \begin{bmatrix}
+	-4+j3 &-4-j3  &-16  &-17.2  &-18.4  &-20 
+	\end{bmatrix}
+	\end{aligned}
+	\end{split}
+	\nonumber
+	\end{equation}
+	
+	It is clearly shown in Fig.~\ref{fig6}, \ref{fig7} and \ref{fig8} that the larger negative real parts the pole has, the more control effect is required. However if the designed poles are too right, large overshoot or long settling time may be expected to appear (as is shown in Fig.~\ref{fig9}).
+	
+	\begin{figure*}[htbp] %通栏
+		\begin{minipage}[t]{0.33\linewidth} %调节两个子图左右间距
+			\centering
+			\includegraphics[width=2.5in, height=1.9in]{fig8.png} %调节单个子图大小
+			\caption{Control signal size with $p$} %子图下标题
+			\label{fig6}
+		\end{minipage}%
+		\begin{minipage}[t]{0.33\linewidth}
+			\centering
+			\includegraphics[width=2.5in, height=1.9in]{fig9.png}
+			\caption{Control signal size with ${p}'$}
+			\label{fig7}
+		\end{minipage}%
+		\begin{minipage}[t]{0.33\linewidth}
+			\centering
+			\includegraphics[width=2.5in, height=1.9in]{fig10.png}
+			\caption{Control signal size with ${p}''$}
+			\label{fig8}
+		\end{minipage}
+	\end{figure*}
+
+	\begin{figure}[htbp]
+		\centering
+		\includegraphics[width=0.6\linewidth]{fig11.png}
+		\caption{Large overshoot show when given ${p}''$ with small negative real parts}
+		\label{fig9}
+	\end{figure}
+	
+	Pole placement methods have the magic of easily stabilizing the system and ensuring the expected design performance by using state feedback controller. On the other hand, poles of systems are hard to select and have no strict standards. In next section, linear quadratic regulator will be introduced to solve the trade-off problem between system performance and control cost.
 	
 	
-	\section{...}
+	\section{Linear quadratic regulator controller}
 	...
 	\section{Conclusion}
 	\section*{Acknowledgments}

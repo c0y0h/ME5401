@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2021.12.29)  27 OCT 2022 16:53
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2021.12.29)  27 OCT 2022 19:14
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -713,28 +713,71 @@ File: fig7.png Graphic file (type png)
 <use fig7.png>
 Package pdftex.def Info: fig7.png  used on input line 414.
 (pdftex.def)             Requested size: 364.19667pt x 273.1589pt.
-(./ME5401.bbl [7 <./fig5.png> <./fig6.png (PNG copy)>])
+<fig8.png, id=133, 526.96875pt x 395.22656pt>
+File: fig8.png Graphic file (type png)
+<use fig8.png>
+Package pdftex.def Info: fig8.png  used on input line 443.
+(pdftex.def)             Requested size: 180.67868pt x 137.31218pt.
+
+Overfull \hbox (30.4473pt too wide) in paragraph at lines 443--444
+ [][] 
+ []
+
+<fig9.png, id=134, 526.96875pt x 395.22656pt>
+File: fig9.png Graphic file (type png)
+<use fig9.png>
+Package pdftex.def Info: fig9.png  used on input line 449.
+(pdftex.def)             Requested size: 180.67868pt x 137.31218pt.
+
+Overfull \hbox (30.4473pt too wide) in paragraph at lines 449--450
+ [][] 
+ []
+
+<fig10.png, id=135, 526.96875pt x 395.22656pt>
+File: fig10.png Graphic file (type png)
+<use fig10.png>
+Package pdftex.def Info: fig10.png  used on input line 455.
+(pdftex.def)             Requested size: 180.67868pt x 137.31218pt.
+
+Overfull \hbox (30.4473pt too wide) in paragraph at lines 455--456
+ [][] 
+ []
+
+<fig11.png, id=136, 694.595pt x 160.6pt>
+File: fig11.png Graphic file (type png)
+<use fig11.png>
+Package pdftex.def Info: fig11.png  used on input line 463.
+(pdftex.def)             Requested size: 273.14923pt x 63.15816pt.
+[7pdfTeX warning (ext4): destination with the same identifier (name{equation.2.
+19}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.473 	\section
+               {Conclusion} <./fig5.png> <./fig6.png (PNG copy)>] [8 <./fig7.pn
+g (PNG copy)> <./fig8.png (PNG copy)> <./fig9.png (PNG copy)> <./fig10.png (PNG
+ copy)> <./fig11.png>] (./ME5401.bbl)
 \tf@thm=\write5
 \openout5 = `ME5401.thm'.
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 435.
- [8 <./fig7.png (PNG copy)>]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 435.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 482.
+ [9]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 482.
  (./ME5401.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 435.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 435.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 482.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 482.
 Package rerunfilecheck Info: File `ME5401.out' has not changed.
-(rerunfilecheck)             Checksum: 6E44D94D06BC73B07E6FFF8BA26A2846;424.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 435.
+(rerunfilecheck)             Checksum: 8698FA1447983791D3F676C853E82455;458.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 482.
  ) 
 Here is how much of TeX's memory you used:
- 10093 strings out of 481239
- 152337 string characters out of 5920376
- 433319 words of memory out of 5000000
- 25110 multiletter control sequences out of 15000+600000
- 542096 words of font info for 59 fonts, out of 8000000 for 9000
+ 10155 strings out of 481239
+ 152991 string characters out of 5920376
+ 433604 words of memory out of 5000000
+ 25153 multiletter control sequences out of 15000+600000
+ 547075 words of font info for 78 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 41i,22n,42p,877b,440s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 41i,26n,42p,877b,493s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texmf/fonts/enc/dvips/cm-super/cm-super-ts1.enc}</usr/share/texli
 ve/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texlive/tex
 mf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texlive/texmf-dis
@@ -743,22 +786,24 @@ t/fonts/type1/public/amsfonts/cm/cmbx9.pfb></usr/share/texlive/texmf-dist/fonts
 /public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/publi
 c/amsfonts/cm/cmmi5.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfo
 nts/cm/cmmi7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/
-cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.p
-fb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb></usr
-/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/t
-exlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texlive/t
-exmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/share/texlive/texmf-dis
-t/fonts/type1/public/amsfonts/cm/cmsl12.pfb></usr/share/texlive/texmf-dist/font
-s/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type
-1/public/amsfonts/cm/cmsy5.pfb></usr/share/texlive/texmf-dist/fonts/type1/publi
-c/amsfonts/cm/cmsy7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfo
-nts/cm/cmti10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm
-/cmti12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/
-msbm10.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm1000.pfb>
-Output written on ME5401.pdf (9 pages, 568085 bytes).
+cmmi8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.p
+fb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></us
+r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb></usr/share/
+texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texlive/
+texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-di
+st/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/share/texlive/texmf-dist/fonts
+/type1/public/amsfonts/cm/cmsl12.pfb></usr/share/texlive/texmf-dist/fonts/type1
+/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/publi
+c/amsfonts/cm/cmsy5.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfo
+nts/cm/cmsy6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/
+cmsy7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.
+pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></
+usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></u
+sr/share/texmf/fonts/type1/public/cm-super/sfrm1000.pfb>
+Output written on ME5401.pdf (10 pages, 666697 bytes).
 PDF statistics:
- 226 PDF objects out of 1000 (max. 8388607)
- 182 compressed objects within 2 object streams
- 44 named destinations out of 1000 (max. 500000)
- 97 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 249 PDF objects out of 1000 (max. 8388607)
+ 197 compressed objects within 2 object streams
+ 47 named destinations out of 1000 (max. 500000)
+ 117 words of extra memory for PDF output out of 10000 (max. 10000000)
 

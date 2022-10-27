@@ -3,5 +3,5 @@
 \contentsline {subsection}{\numberline {2.1}Method description}{4}{subsection.2.1}%
 \contentsline {subsection}{\numberline {2.2}Simulation results and refinements}{6}{subsection.2.2}%
 \contentsline {subsection}{\numberline {2.3}Discussion}{7}{subsection.2.3}%
-\contentsline {section}{\numberline {3}...}{7}{section.3}%
-\contentsline {section}{\numberline {4}Conclusion}{8}{section.4}%
+\contentsline {section}{\numberline {3}Linear quadratic regulator controller}{9}{section.3}%
+\contentsline {section}{\numberline {4}Conclusion}{9}{section.4}%
