@@ -223,9 +223,115 @@
 	
 	\section{State feedback controller by pole placement method}
 	
+	\subsection{Method description}
+	
+	\hspace{1.0em}
+	Given the acquired six-order state space model, feedback controller is required to make the system stable. In this section, pole placement method will be used to obtain the feedback gain to meet control requirements. Firstly considering a second-order system, its overshoot and 2\% settling time of a step response is given as follows
+	
+	\begin{equation}
+	M_{p}=e^{\frac{-\pi \zeta }{\sqrt{1-\zeta ^{2}}}}, t_{s}=\frac{4.0}{\zeta \omega _{n}}
+	\label{eq6}
+	\end{equation}
+	
+	where $\zeta$ and $\omega_{n}$ are damping ratio and natural frequency respectively. Now that the overshoot should below 10\% and settling time less than 5s, we set $\zeta=0.8$ and $\omega_{n}=1.25$ in this case, and then the two pole of second-order system is calculated as
+	
+	\begin{equation}
+	\lambda _{1,2}=-\zeta \omega _{n}\pm j\omega _{n}\sqrt{1-\zeta ^{2}}
+	\label{eq7}
+	\end{equation}
+	
+	To assure the stability of system, the two dominant poles should have little smaller real parts, so we set them at $\lambda_{1,2}=-2.5\pm j1.875$. The other 4 poles are chosen much faster than the two dominant poles. Then the desired characteristic polynomial becomes
+	
+	\begin{equation}
+	\begin{split}
+	\begin{aligned}
+		\phi _{d}(s)&=(s-\lambda _{1})(s-\lambda _{2})(s-\lambda _{3})(s-\lambda _{4})(s-\lambda _{5})(s-\lambda _{6})\\
+		&=s^{6}+a_{5}s^{5}+a_{4}s^{4}+a_{3}s^{3}+a_{2}s^{2}+a_{1}s+a_{0}
+	\end{aligned}
+	\end{split}
+	\label{eq8}
+	\end{equation}
+	
+	The desired closed-loop matrix can be written in controllable canonical form
+	
+	\begin{equation}
+	A_{d}=\begin{bmatrix}
+	0 &  1&0  &0  &0  &0 \\ 
+	0 &0  &1  &0  &0  &0 \\ 
+	0 &0  &0  &1  &0  &0 \\ 
+	0 &0  &0  &0  &1  &0 \\ 
+	0 &0  &0  &0  &0  &1 \\ 
+	-a_{5} &-a_{4}  &-a_{3}  & -a_{2} &-a_{1}  & -a_{0}
+	\end{bmatrix}
+	\label{eq9}
+	\end{equation}
+	
+	Then the remainning task is transform the system with state feedback also to the controllable canonical form. First compute the controllability matrix and check if it is full rank
+	
+	\begin{equation}
+	W_{c}=\begin{Bmatrix}
+	B &AB  &A^{2}B  &A^{3}B &A^{4}B  & A^{5}B
+	\end{Bmatrix}
+	\label{eq10}
+	\end{equation}
+	
+	Then select 6 independent vectors from $W_{c}$ in the strict order from left to right (the first six column vectors in this case) and group them in matrix X in the following form
+	
+	\begin{equation}
+	X=\begin{Bmatrix}
+	b_{1} &b_{2}  &Ab_{1}  &Ab_{2}  &A^{2}b_{1}  &A^{2}b_{2} 
+	\end{Bmatrix}
+	\label{eq11}
+	\end{equation}
+	
+	Also compute the inverse of $X$ and write it as the following form
+	
+	\begin{equation}
+	X^{-1}=\begin{bmatrix}
+	q_{1}^{T} & q_{2}^{T} & q_{3}^{T} & q_{4}^{T} & q_{5}^{T} & q_{6}^{T}
+	\end{bmatrix}^{T}
+	\label{eq12}
+	\end{equation}
+	
+	Because that the system has multiple input channels, choose the $3^{th} (d_{1}=3)$ and $6^{th} (d_{1}+d_{2}=6)$ row vectors of $X^{-1}$ and construct transformation matrix $T$ as
+	
+	\begin{equation}
+	T=\begin{bmatrix}
+	q_{3}^{T} &q_{3}^{T}A  &q_{3}^{T}A^{2}  & q_{6}^{T} &q_{6}^{T}A  &q_{6}^{T}A^{2}
+	\end{bmatrix}^{T}
+	\label{eq13}
+	\end{equation}
+	
+	Define the feedback gain matrix $\bar{K}\in \mathbb{R}^{2\times 6}$ with 12 unknown variables, we can solve it by establishing the equation
+	
+	\begin{equation}
+	\bar{A}-\bar{B}\bar{K}=A_{d}
+	\label{eq14}
+	\end{equation}
+	
+	where $\bar{A}=TAT^{-1}$, $\bar{B}=TB$
+	
+	After obtainning the matrix $\bar{K}$, we can finally get the original feedback gain matrix $K=\bar{K}T$. Substitute the control law $u=-Kx+r$ into Eq.~\ref{eq1} and the new closed-loop system becomes
+	
+	\begin{equation}
+	\begin{split}
+	\begin{aligned}
+	\dot{x}&=(A-BK)x+Br \\
+	y&=Cx
+	\label{eq15}
+	\end{aligned}
+	\end{split}
+	\end{equation}
+	
+	
+	\subsection{Simulation results}
+	
+	Pole placement
 	
 	
 	Size\cite{b1}
+	
+	\subsection{Discussion and refinements}
 	
 	\section{...}
 	...
