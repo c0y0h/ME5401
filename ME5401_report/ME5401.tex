@@ -17,6 +17,7 @@
 %% Format of Caption for Tab. and Fig.
 \usepackage{booktabs} %% tables with three lines
 \usepackage{tocloft}
+\usepackage{graphicx}
 %+++++++++++++++ Proof etc. +++++++++++++++++++++++++%%
 {%% Environment of Proof
 	\theoremstyle{nonumberplain}
@@ -233,14 +234,14 @@
 	\label{eq6}
 	\end{equation}
 	
-	where $\zeta$ and $\omega_{n}$ are damping ratio and natural frequency respectively. Now that the overshoot should below 10\% and settling time less than 5s, we set $\zeta=0.8$ and $\omega_{n}=1.25$ in this case, and then the two pole of second-order system is calculated as
+	where $\zeta$ and $\omega_{n}$ are damping ratio and natural frequency respectively. Now that the overshoot should below 10\% and settling time less than 5s, we set $\zeta=0.8$ and $\zeta\omega_{n}=2.5$ in this case, and then the two pole of second-order system is calculated as
 	
 	\begin{equation}
 	\lambda _{1,2}=-\zeta \omega _{n}\pm j\omega _{n}\sqrt{1-\zeta ^{2}}
 	\label{eq7}
 	\end{equation}
 	
-	To assure the stability of system, the two dominant poles should have little smaller real parts, so we set them at $\lambda_{1,2}=-2.5\pm j1.875$. The other 4 poles are chosen much faster than the two dominant poles. Then the desired characteristic polynomial becomes
+	To assure the stability of system, the two dominant poles should have little smaller real parts, so we set them at $\lambda_{1,2}=-2.5\pm j1.875$. The other 4 poles are chosen 4-5 times lefter than the two dominant poles. Then the desired characteristic polynomial becomes
 	
 	\begin{equation}
 	\begin{split}
@@ -324,14 +325,103 @@
 	\end{equation}
 	
 	
-	\subsection{Simulation results}
+	\subsection{Simulation results and refinements}
 	
-	Pole placement
+	\hspace{1.0em}
+	In this report, the 6 poles are selected as $\lambda_{1,2}=-2.5\pm j1.875, \lambda_{3}=-10, \lambda_{4}=-10.75, \lambda_{5}=-11.5$ and $\lambda_{6}=-12.5$. The final feedback gain matrix $K$ is calculated to be
+	
+	\begin{equation}
+	K=\begin{bmatrix}
+	-15.68 &12.20  &6.27  &4.90  &-6.21  &-2.26 \\ 
+	250960 &-21110  &-107660  &-845.58  &9043.2  &412.98 
+	\end{bmatrix}
+	\nonumber
+	\end{equation}
+	
+	The number of elements differes a lot and are relatively weird. Temporarily we use the feedback matrix and simulate the closed-loop system with time domain from 0 to 10 seconds. Given a step signal for each input channel, the output response is showed in Fig.~\ref{fig3}. Sadly though the system becomes stable with a short settling time, there are huge overshoots in both cases and the stable points are also impossible in real cases. 
+	
+	\begin{figure}[htbp]
+		\centering
+		\begin{minipage}[t]{0.48\textwidth}
+			\centering
+			\includegraphics[width=8cm]{fig3.png}
+		\end{minipage}
+		\begin{minipage}[t]{0.48\textwidth}
+			\centering
+			\includegraphics[width=8cm]{fig4.png}
+		\end{minipage}
+	\caption{Step response for the closed-loop system}
+	\label{fig3}
+	\end{figure}
+	
+	The results are unacceptable and need further refinements. Obviously, the bad results are closely realted to the feedback gain matrix $K$, which influnces the system matrix $A-BK$ of closed-loop system. In another point of view, we can find infinite $K$ to place the same poles for a plant as there are infinite system matrixes with the same eigenvalues. 
+	
+	Actuallly when tackling pole placement problems for high order system, some pole choices will result in sensitivity problems, which leads to a large gain as in our former method. One robust algorithm was proposed in \cite{kautsky1985robust} and has been applied in matlab function. The aim of this algorithm is to find the feedback gain matrix $K$ that makes $A-BK$ the most robust. One method to measure the robustness of a matrix is to use condition number
+	
+	\begin{equation}
+	c_{j}=\frac{1}{s_{j}}=\frac{\left \| y_{j} \right \|_{2} \left \| x_{j} \right \|_{2}}{\left |y_{j}^{T} x_{j}  \right |}
+	\label{eq16}
+	\end{equation}
+	
+	where $x_{j}$ and $y_{j}$ are the left and right eigenvalues of $A-BK$ respectively. It can be proved that $c_{j}$ has a upper bound i.e. $max_{j}c_{j} \leq \kappa _{2}(X)\equiv \left \| X \right \|_{2}\left \| X^{-1} \right \|_{2}$, where $X=\begin{bmatrix}
+	x_{1} &x_{2}  &\cdots   & x_{n}
+	\end{bmatrix}$ is the eigenvector matrix. The maximum value $v=max(c_{j})$ of all condition numbers is chosen and the system is said to be the most robust if $v$ is the smallest. Then the problem becomes how to find the minimum upper bound of condition numbers.
+	
+	The minimum upper bound can ben found by cauchy inequality and the result is given as follows
+	
+	\begin{equation}
+	min ( \kappa _{2}(X)) \leq \frac{\kappa _{2}(S)}{\sqrt{k}}
+	\label{eq17}
+	\end{equation}
+	
+	$S$ is orthogonal normal basis of the null space of $N(U_{1}^{T}(A-\lambda I))$, where $U_{1}$ is the orthogonal basis of null space of input matrix $B$, $\lambda$ are eigenvalues of matrix $A-BK$ and $k$ is the dimensions of $S$. QR decomposition or singular value decomposition (SVD) can be used to calculate the orthogonal basis. Finally, feedback gain matrix $K$ can be obtained by
+	
+	\begin{equation}
+	K=Z^{-1}U_{0}^{T}(A-X\Lambda X^{-1})
+	\label{eq18}
+	\end{equation}
+	
+	where $\Lambda=diag(\lambda_{1},\lambda_{2},...,\lambda_{n})$, $Z$ is the $Q$ matrix of $B$ and $U_{0}$ is also orthogonal basis of $B$.
+	
+	The same poles are chosen but we use the new method to calculate feedback matrix ${K}'$, the result is given below
+	
+	\begin{equation}
+	{K}'=\begin{bmatrix}
+	8.7165 &-3.6746  &-1.8207  &0.5685  &-0.4985  &-0.0880 \\ 
+	-11.2971 &10.6474  &5.4543  &-0.8739  &1.4368  &0.3794 
+	\end{bmatrix}
+	\nonumber
+	\end{equation}
+	
+	The step response for the new closed-loop system is shown in Fig.~\ref{fig4} and both the overshoot and settling time meet the requirements. Now assume that all six states can be observed, their response with non-zero initial condition $x_{0}$ to zero external inputs is given in Fig.~\ref{fig5}. It is clearly shown that all states are stable and no weired values apper.
+	
+	\begin{figure}[htbp]
+		\centering
+		\begin{minipage}[t]{0.48\textwidth}
+			\centering
+			\includegraphics[width=8cm]{fig5.png}
+		\end{minipage}
+		\begin{minipage}[t]{0.48\textwidth}
+			\centering
+			\includegraphics[width=8cm]{fig6.png}
+		\end{minipage}
+		\caption{Step response for the new closed-loop system}
+		\label{fig4}
+	\end{figure}
+
+	\begin{figure}[htbp]
+		\centering
+		\includegraphics[width=0.8\linewidth]{fig7.png}
+		\caption{All state responses with zero inputs}
+		\label{fig5}
+	\end{figure} 
+	
+	\subsection{Discussion}
+	
+	\hspace{1.0em}
+	With refinements on feedback gain matrix $K$, the overshoot of the closed-loop system is largely cut down as well as its sensitivity to noise. On the other side, the system performance is also largely affected by different pole choosing strategies. Although one can always stablize the system and make system response faster by designing poles on the very left plain, the input cost will increase in this case. To investigate the influence of poles, two more groups of poles are used. The new poles are listed as followings
 	
 	
-	Size\cite{b1}
-	
-	\subsection{Discussion and refinements}
 	
 	\section{...}
 	...
