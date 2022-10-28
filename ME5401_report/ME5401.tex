@@ -472,6 +472,8 @@
 	
 	\subsection{Method description}
 	
+	\subsubsection{Class method}
+	
 	\hspace{1.0em}
 	Linear quadratic resgulator (LQR) follows the theory of optimal control, which is aimed to minimized the cost function. Given a multi-input-multi-output system and consider both control performance and input cost, the cost function can be defined as
 	
@@ -511,11 +513,168 @@
 	\label{eq22}
 	\end{equation}
 	
+	\subsubsection{Discrete LQR method}
+	
+	\hspace{1.0em}
+	Another method is given by considering a discrete case. Similarly, a discrete cost function is given in Eq.~\ref{eq23}.
+	
+	\begin{equation}
+	J=\frac{1}{2}\sum_{k=0}^{\infty}(x_{k}^{T}Qx_{k}+u_{k}^{T}Ru_{k})
+	\label{eq23}
+	\end{equation}
+	
+	The first step is to discretize the state space equation. According to the mean value theorem of integral
+	
+	\begin{equation}
+	x(t+dt)=x(t)+Ax(\xi )dt, \xi \in (t,t+dt)
+	\label{eq24}
+	\end{equation}
+	
+	where $dt$ is the dicrete time interval set mannually. Here we use midpoint euler method ($x(\xi)=\frac{x(t)+x(t+dt)}{2}$) to estimate the next state, we got
+	
+	\begin{equation}
+	x(t+dt)=(I-\frac{Adt}{2})^{-1}(I+\frac{Adt}{2})x(t)
+	\label{eq25}
+	\end{equation}
+	
+	Back to the state space equation in Eq.~\ref{eq1}, we integrate both sides and get
+	
+	\begin{equation}
+	\int_{t}^{t+dt}\dot{x}=\int_{t}^{t+dt}(Ax+Bu)dt\Rightarrow x(t+dt)-x(t)=Ax(\xi )dt+Bu(\xi)dt
+	\label{eq26}
+	\end{equation}
+	
+	By substituting Eq.~\ref{eq25} into it and take some approximation, we finally get
+	
+	\begin{equation}
+	x(t+dt)=(I-\frac{Adt}{2})^{-1}(I+\frac{Adt}{2})x(t)+Bdtu(t)
+	\label{eq27}
+	\end{equation}
+	
+	Now we can rewrite Eq.~\ref{eq27} into a form of dicrete state space model
+	
+	\begin{equation}
+	x(k+1)=\bar{A}x(k)+\bar{B}u(k)
+	\label{eq28}
+	\end{equation}
+	
+	where $\bar{A}=(I-\frac{Adt}{2})^{-1}(I+\frac{Adt}{2})$ and $\bar{B}=Bdt$.
+	
+	The second step is to solve the discrete riccati equation
+	
+	\begin{equation}
+	P=Q+\bar{A}^{T}P\bar{A}-\bar{A}^{T}P\bar{B}(R+\bar{B}^{T}P\bar{B})^{-1}\bar{B}^{T}P\bar{A}
+	\label{eq29}
+	\end{equation}
+	
+	$P$ can be solved numerically by iteration method. Usually we give $P$ a initial value as $Q$ and $P$ will quickly converges after a number of iterations. With the matrix $P$, we finally get the feedback gain matrix $K=(R+\bar{B}^{T}P\bar{B})^{-1}\bar{B}^{T}P\bar{A}$.
+	
 	
 	\subsection{Simulation results}
 	
+	\hspace{1.0em}
+	Like what we did in Section 1, we first evaluate the closed-loop system performance under a step signal input for each channel with zero initial conditions. Since we obtain two methods for LQR controller, a comparison between them (with the same weighting matrix $Q$ and $R$) is also given.
+	
+	We initially select weighting matrix $Q=diag\begin{Bmatrix}
+	10 &50  &50  &5  &50  &50 
+	\end{Bmatrix}$ and $R=I_{6\times 6}$. With the first eigenvalue-based method, the feedback gain matrix $K$ is acquired as
+	
+	\begin{equation}
+	K=\begin{pmatrix}
+	54.3246 &-45.5065  &-19.2405  &5.2022  &-5.3849  &2.3616 \\ 
+	-45.7713 &39.8256  &25.5740  &-4.0248  &5.4445  &6.9241 
+	\end{pmatrix}
+	\nonumber
+	\end{equation}
+	
+	Then the closed-loop system is simulated as is shown in Fig.~\ref{fig10}. The system is stabilized and successfully meet the design specifications. With the selected weighting matrix $Q$ and $R$, there exists no overshoot and the settling time are all around 4s.
+		
+	\begin{figure}[htbp]
+		\centering
+		\begin{minipage}[t]{0.48\textwidth}
+			\centering
+			\includegraphics[width=8cm]{fig12.png}
+		\end{minipage}
+		\begin{minipage}[t]{0.48\textwidth}
+			\centering
+			\includegraphics[width=8cm]{fig13.png}
+		\end{minipage}
+		\caption{Step response for closed-loop system by eigenvalue-based LQR method}
+		\label{fig10}
+	\end{figure}
+	
+	Then the second discrete LQR method is applied. We suppose that the matrix $P$ converges when the mean of elements in $\mid P_{new}-P_{old} \mid$ is less than a small number. The gain matrix $K$ is calculated as
+	
+	\begin{equation}
+	K=\begin{pmatrix}
+	46.7765 &-39.2025  &-19.5779  &4.2947  &-4.8494  &-0.6493 \\ 
+	-33.3206 &28.1860  &15.6346  &-3.0081  &3.6233  &1.9127 
+	\end{pmatrix}
+	\nonumber
+	\end{equation}
+	
+	The simulation results is shown in Fig.~\ref{fig11}. Compared with the eigenvalue-based one, this discrete lqr method have a little more overshoot but also cut down the settling time in most cases. The dlqr method is also computationally efficient because the matrix $P$ will quickly converges while the first method always need to handle the eigenvalue problem. However, when step signal is added in first input channel, the settling time is over 5s and unable to meet the basic design specifications. Therefore we will still use the eigenvalue-based method in the following discussion.
+	
+	\begin{figure}[htbp]
+		\centering
+		\begin{minipage}[t]{0.48\textwidth}
+			\centering
+			\includegraphics[width=8cm]{fig15.png}
+		\end{minipage}
+		\begin{minipage}[t]{0.48\textwidth}
+			\centering
+			\includegraphics[width=8cm]{fig14.png}
+		\end{minipage}
+		\caption{Step response for closed-loop system by discrete LQR method}
+		\label{fig11}
+	\end{figure}
+
+	Fig.~\ref{fig12} also gives the six state responses to non-zero initial state condition $x_{0}$ with zero external inputs. All states becomes stable at zero point in a short time as expected.
+	
+	\begin{figure}[htbp]
+		\centering
+		\includegraphics[width=0.6\linewidth]{fig16.png}
+		\caption{State response with zero external inputs}
+		\label{fig12}
+	\end{figure}
+	
 	\subsection{Discussion}
-	...
+	
+	\hspace{1.0em}
+	Rather than design poles to stabilize the system, LQR method achieves the stability by choosing reasonable weighting matrix $Q$ and $R$. To investigate their effects on system, we remain $R$ unchanged and multiply the $Q$ matrix with a scalar to form ${Q}'=\begin{Bmatrix}
+	5&  25&  25&  2.5&  25& 25
+	\end{Bmatrix}$. By monitoring the control signal cost and comparing it with the original system (Fig.~\ref{fig13}), we can find that with a smaller $Q$, the energy cost is reduced. We also keep $Q$ unchanged and design a new $R$ matrix with bigger weights. The simulation results is given in Fig.~\ref{fig14}, where the bigger $R$ gives a greater punishment on control energy and LQR controller automatically cut down the control signal.
+	
+	\begin{figure}[H]
+		\centering
+		\begin{minipage}[t]{0.48\textwidth}
+			\centering
+			\includegraphics[width=8cm]{fig17.png}
+		\end{minipage}
+		\begin{minipage}[t]{0.48\textwidth}
+			\centering
+			\includegraphics[width=8cm]{fig18.png}
+		\end{minipage}
+		\caption{Comparison between control cost with $Q$ and ${Q}'$ ($R$ remain unchanged)}
+		\label{fig13}
+		
+		\begin{minipage}[t]{0.48\textwidth}
+			\centering
+			\includegraphics[width=8cm]{fig17.png}
+		\end{minipage}
+		\begin{minipage}[t]{0.48\textwidth}
+			\centering
+			\includegraphics[width=8cm]{fig19.png}
+		\end{minipage}
+		\caption{Comparison between control cost with $R$ and ${R}'$ ($Q$ remain unchanged)}
+		
+		\label{fig14}
+	\end{figure}
+
+	Similar with the pole placement methods, LQR controller offers a way to do trade-off between response speed and control signal cost by tuning the weighting matrixes. In practical situation, one can define the most reasonable cost function according to the established mathematic model. Unlike selecting poles by experience and check system performance repeatedly, LQR method can always find the optimal solution as long as the cost function is given.
+	
+	
+	
 	\section{Conclusion}
 	\section*{Acknowledgments}
 	%MS++++++++++++++++++++++++++++++ Reference ++++++++++++++++++
