@@ -199,8 +199,13 @@ R = [1   0;
      0   1]*1;
 K2 = lqr_control(A,B,Q,R);
 
+%   discrete lqr
+K22=dlqr_control(A,B,Q,R);
+%%
+
 %   check
 ss_q2 = ss(A-B*K2, B, C, D);
+ss_q2 = ss(A-B*K22, B, C, D);
 
 %   u=[1 0]
 [y, t, x] = lsim(ss_q2, u1, t, zeros(6,1));

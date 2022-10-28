@@ -440,19 +440,19 @@
 	\begin{figure*}[htbp] %通栏
 		\begin{minipage}[t]{0.33\linewidth} %调节两个子图左右间距
 			\centering
-			\includegraphics[width=2.5in, height=1.9in]{fig8.png} %调节单个子图大小
+			\includegraphics[width=2.4in, height=1.9in]{fig8.png} %调节单个子图大小
 			\caption{Control signal size with $p$} %子图下标题
 			\label{fig6}
 		\end{minipage}%
 		\begin{minipage}[t]{0.33\linewidth}
 			\centering
-			\includegraphics[width=2.5in, height=1.9in]{fig9.png}
+			\includegraphics[width=2.4in, height=1.9in]{fig9.png}
 			\caption{Control signal size with ${p}'$}
 			\label{fig7}
 		\end{minipage}%
 		\begin{minipage}[t]{0.33\linewidth}
 			\centering
-			\includegraphics[width=2.5in, height=1.9in]{fig10.png}
+			\includegraphics[width=2.4in, height=1.9in]{fig10.png}
 			\caption{Control signal size with ${p}''$}
 			\label{fig8}
 		\end{minipage}
@@ -469,6 +469,52 @@
 	
 	
 	\section{Linear quadratic regulator controller}
+	
+	\subsection{Method description}
+	
+	\hspace{1.0em}
+	Linear quadratic resgulator (LQR) follows the theory of optimal control, which is aimed to minimized the cost function. Given a multi-input-multi-output system and consider both control performance and input cost, the cost function can be defined as
+	
+	\begin{equation}
+	J=\frac{1}{2}\int_{0}^{\infty}(x^{T}Qx+u^{T}Ru)dt
+	\label{eq19}
+	\end{equation}
+	
+	The $Q$ and $R$ in Eq.~\ref{eq19} are weighting matrixes representing cost on response speed and energy efficiency respectively. After selecting the appropriate weighting matrix, a state feedback controller $u=-Kx+r$ can be designed to minimize the cost function, where the gain matrix $K=R^{-1}B^{T}P$ and matrix $P$ is given by solving the Riccati equation
+	
+	\begin{equation}
+	A^{T}P+PA+Q-PBR^{-1}B^{T}P=0
+	\label{eq20}
+	\end{equation}
+	
+	Then the problem becomes solving the algebraic matrix riccati equation. One method is to use an eigenvalue-eigenvector based algorithm. First a $2n \times 2n$ matrix is derived
+	
+	\begin{equation}
+	\Gamma =\begin{bmatrix}
+	A &-BR^{-1}B^{T} \\ 
+	-Q &-A^{T} 
+	\end{bmatrix}
+	\label{eq21}
+	\end{equation}
+	
+	Then $n$ stable eigenvalues of $\Gamma$ are found as well as their corresponding eigenvectors. Write the eigenvectors in the form of $\begin{pmatrix}
+	v_{i} & u_{i}
+	\end{pmatrix}^{T},i=1,2,\cdots ,n$. Then the $P$ matrix in riccati equation can be calculated by
+	
+	\begin{equation}
+	P=\begin{pmatrix}
+	\mu _{1} &\cdots   & \mu _{n}
+	\end{pmatrix}
+	\begin{pmatrix}
+	v_{1} &\cdots   & v_{n}
+	\end{pmatrix}^{-1}
+	\label{eq22}
+	\end{equation}
+	
+	
+	\subsection{Simulation results}
+	
+	\subsection{Discussion}
 	...
 	\section{Conclusion}
 	\section*{Acknowledgments}

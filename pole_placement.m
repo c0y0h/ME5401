@@ -9,22 +9,22 @@ syms s;
 % damp = 0.707;
 damp = 0.8;
 % wn = 1.13;
-wn = 1.25;
 % wn = 3.125;
-lamda1 = -2.5*(damp*wn + wn*sqrt(1-damp*damp)*1i);
-lamda2 = -2.5*(damp*wn - wn*sqrt(1-damp*damp)*1i);
-% lamda1 = -(damp*wn + wn*sqrt(1-damp*damp)*1i);
-% lamda2 = -(damp*wn - wn*sqrt(1-damp*damp)*1i);
+wn=2
+% lamda1 = -2.5*(damp*wn + wn*sqrt(1-damp*damp)*1i);
+% lamda2 = -2.5*(damp*wn - wn*sqrt(1-damp*damp)*1i);
+lamda1 = -(damp*wn + wn*sqrt(1-damp*damp)*1i);
+lamda2 = -(damp*wn - wn*sqrt(1-damp*damp)*1i);
 %   2 times faster
-% lamda3 = -5*damp*wn;
-% lamda4 = -5.2*damp*wn;
-lamda3 = -5*damp*wn*2.5;
-lamda4 = -5.5*damp*wn*2.5;
+lamda3 = -4*damp*wn;
+lamda4 = -4.3*damp*wn;
+% lamda3 = -5*damp*wn*2.5;
+% lamda4 = -5.5*damp*wn*2.5;
 %   4 times faster
-% lamda5 = -5.5*damp*wn;
-% lamda6 = -6.0*damp*wn;
-lamda5 = -6.0*damp*wn*2.5;
-lamda6 = -6.5*damp*wn*2.5;
+lamda5 = -4.6*damp*wn;
+lamda6 = -5.0*damp*wn;
+% lamda5 = -6.0*damp*wn*2.5;
+% lamda6 = -6.5*damp*wn*2.5;
 polynomial = (s-lamda1)*(s-lamda2)*(s-lamda3)*(s-lamda4)*(s-lamda5)*(s-lamda6);
 pol_cof = double(coeffs(polynomial));
 
