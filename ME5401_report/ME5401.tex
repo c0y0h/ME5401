@@ -750,17 +750,17 @@
 	\hspace{1.0em}
 	First we select observer poles 3 times faster than the control poles $p$ used in section 1. Also we modeify the $Q$ and $R$ in LQR controller to achieve a better system performance. The new weighting matrix are $Q=diag\begin{Bmatrix}
 	4&  22&  22&  4&  22&22 
-	\end{Bmatrix}$ and $R=5I$ respectively. The system's zero-state response with a step signal in each channel is given in Fig.~\ref{fig16}. The six responses all have small overshoots and are stabilize with time, but in the left picture the settling time for the first two ouput channels are a little bit longer. We can plot the state estimation error with time in Fig.~\ref{fig17}, where all of the errors quickly converges to zero during the first seconds.
+	\end{Bmatrix}$ and $R=5I$ respectively. The system's zero-state response with a step signal in each channel is given in Fig.~\ref{fig16}. The six responses all have small overshoots and are stabilize with time, but in the left picture the settling time for the first ouput channel is a little bit longer. We can plot the state estimation error with time in Fig.~\ref{fig17}, where all of the errors quickly converges to zero in 1s.
 	
 	\begin{figure}[H]
 		\centering
 		\begin{minipage}[t]{0.48\textwidth}
 			\centering
-			\includegraphics[width=8cm]{fig21.png}
+			\includegraphics[width=8cm]{fig22.png}
 		\end{minipage}
 		\begin{minipage}[t]{0.48\textwidth}
 			\centering
-			\includegraphics[width=8cm]{fig22.png}
+			\includegraphics[width=8cm]{fig21.png}
 		\end{minipage}
 		\caption{Step response for the observed-based system}
 		\label{fig16}
@@ -819,16 +819,182 @@
 		\label{fig20}
 	\end{figure}
 	
-	\section{System decoupling}
+	\section{System decoupling control}
+	
+	\subsection{Method description}
+	
+	\subsubsection{Decoupling by state feedback}
+	
+	\hspace{1.0em}
+	In this section, we suppose that cart position $d(t)$ and bike angle $\psi (t)$ are the most two interesting outputs and the new output matrix is
+	
+	\begin{equation}
+	C_{2}=\begin{bmatrix}
+	1 &0  &0  &0  &0  &0 \\ 
+	0 &0  &1  &0  &0  &0 
+	\end{bmatrix}
+	\label{eq35}
+	\end{equation}
+	
+	Then the plant becomes a 2-input-2-output system. To achieve decoupling control, a state feedback control law $u=-Kx+Fr$ is applied such that 
+	
+	\begin{equation}
+	\begin{split}
+	\begin{pmatrix}
+	y_{1}(s)\\y_{2}(s) 
+	\end{pmatrix}=\begin{pmatrix}
+	h_{11} &0 \\ 
+	0 &h_{22} 
+	\end{pmatrix}\begin{pmatrix}
+	r_{1}(s)\\ 
+	r_{2}(s)
+	\end{pmatrix}
+	\end{split}
+	\label{eq36}
+	\end{equation}
+	
+	The closed-loop state space system becomes $\dot{x}=(A-BK)x+BFu$, and by laplace tranformation, we can relate the open-loop and closed loop transfer function matrix:
+	
+	\begin{equation}
+	H(s)=G(s)[I+K(sI-A)^{-1}B]^{-1}F
+	\label{eq37}
+	\end{equation}
+	
+	where $G(s)=C(sI-A)^{-1}B$.
+	
+	To decouple the system we need $H(s)$ to be diagonal and thus $G(s)$ should be non-singular. It can be proved that $G(s)$ can be written in the form of
+	
+	\begin{equation}
+	G(s)=\begin{pmatrix}
+	g_{1}^{T}(s)\\ 
+	g_{2}^{T}(s)\\ 
+	\vdots \\ 
+	g_{m}^{T}(s)
+	\end{pmatrix}=\begin{pmatrix}
+	s^{-\sigma _{1}} &0  &\cdots   &0 \\ 
+	0 &s^{-\sigma _{2}}  &\cdots   &0 \\ 
+	\vdots  &\vdots   &\ddots   &\vdots  \\ 
+	0 &0  &\cdots   &s^{-\sigma _{m}} 
+	\end{pmatrix}[B^{*}+C^{*}(sI-A)^{-1}B]
+	\label{eq38}
+	\end{equation}
+	
+	where $B^{*}=\begin{pmatrix}
+	c_{1}^{T}A^{\sigma _{1}-1}B\\ 
+	c_{2}^{T}A^{\sigma _{2}-1}B\\ 
+	\vdots \\ 
+	c_{m}^{T}A^{\sigma _{m}-1}B
+	\end{pmatrix},
+	C^{*}=\begin{pmatrix}
+	c_{1}^{T}A^{\sigma _{1}}\\ 
+	c_{2}^{T}A^{\sigma _{2}}\\ 
+	\vdots \\ 
+	c_{m}^{T}A^{\sigma _{m}}
+	\end{pmatrix}$ and the relative degree $\sigma_{i}$ can be derived by Eq.~\ref{eq39} 
+	
+	\begin{equation}
+	\sigma _{i}=\left\{\begin{matrix}
+	min(j|c_{i}^{T}A^{i-1}B\neq 0^{T}, j=1,2,\cdots ,n  )\\ 
+	n,\quad if \quad c_{i}^{T}A^{i-1}B=0^{T} \quad i=1,2,\cdots ,n
+	\end{matrix}\right.
+	\label{eq39}
+	\end{equation}
+	
+	Then let the matrixes in control law be $F=(B^{*})^{-1}$ and $K=(B^{*})^{-1}C^{*}$ and substitute $G(s)$ into Eq.~\ref{eq37}, the closed-loop system transfer function matrix is $H(s)=diag(s^{-\sigma_{1}}, s^{-\sigma_{2}}, ..., s^{-\sigma_{m}})$, which is in a diagonal form and the system is decoupled.
+	
+	Also to ensure the stability of the decoupled system, the feedback gain matrix $K$ can be designed as
+	
+	\begin{equation}
+	K=(B^{*})^{-1}\begin{pmatrix}
+	c_{1}^{T}\phi _{f1}(A)\\ 
+	c_{2}^{T}\phi _{f2}(A)\\ 
+	\vdots \\ 
+	c_{m}^{T}\phi _{fm}(A)
+	\end{pmatrix}
+	\label{eq40}
+	\end{equation}
+	
+	where \ $\phi _{fi}(A)=A^{\sigma_{1}}+\gamma _{i1}A^{\sigma_{i-1}}+\gamma _{i\sigma_{i}}I $ \ is the stable characteristic polynomial of each input-output pair.
+	
+
+	\subsubsection{Decoupling by output feedback}
+	
+	\hspace{1.0em}
+	Besides using state feedback methods, the system can also be decoupled by output feedback if the transfer function $G(s)$ is given. Similar with the former method, with the feedback transfer function $K(s)$, we first derive the relationship between open-loop and closed-loop transfer functions.
+	
+	\begin{equation}
+		H(s)=[I+G(s)K(s)]^{-1}G(s)K(s)
+		\label{eq41}
+	\end{equation}
+	
+	It is easy to get that $H^{-1}=(GK)^{-1}+I$, which means that $GK$ should be decoupled. In the design procedure, we first write $G(s)=\frac{N(s)}{d(s)}$, where $d(s)$ is the least common denominators of $G(s)$. Then $K_{d}(s)=adj(N(s))$ is chosen so that $G(s)K_{d}(s)=\frac{det(N(s))}{d(s)}I_{m}$ is successfully decoupled. Moreover, to ensure that $K(s)$ is proper and the final closed-loop system is stable, a stabilizer $K_{s}(s)$ should be designed using pole placement or lqr methods after getting the $m$ decoupled single-input-single-output subsystems ($m=2$ \ in this case). Finally, after the output feedback $K(s)=K_{d}(s)K_s(s)$ is obtained, it should be ensured with no unstable pole-zero cancellations between $G(s)$ and $K(s)$, which makes the system to be internally stable.
 	
 	
+	\subsection{Simulation results and discussion}
 	
+	\hspace{1.0em}
+	For the state feedback method, the relative degree $\sigma_{1} and \sigma_{2}$ are checked to be both 2. Then we define the stable characteristic polynomial of each input-output pair to be $\phi _{fi}(A)=(A-\lambda_{i1})(A-\lambda_{i2}), i=1,2$. Here we use $\lambda_{i 1,2}=-0.8+j0.8$ and $\lambda_{i 3}=-1.6,\lambda_{i 4}=-1.7$. The final result of $K$ and $F$ in control law is given as follows.
 	
+	\begin{equation}
+	K=\begin{pmatrix}
+	0.0197 &0.4083  &-0.5984  &-0.7633  &0  &0.0892 \\ 
+	0.0699 &-0.3311  &0.4428  &0.5072  &0  &-0.1992 
+	\end{pmatrix}, \ 
+	F=\begin{pmatrix}
+	0.0570 &-0.0106 \\ 
+	-0.0378 &0.0237 
+	\end{pmatrix}
+	\nonumber
+	\end{equation}
 	
+	Now first check the closed-loop system's zero-state response with step signal for each input channel. From Fig.~\ref{fig21}, it is clear that the each output channel is influenced by its corresponding input signal, which means the system is successfully decoupled. The system also meets the basic design requirements and have a small overshoot. 
 	
+	\begin{figure}[H]
+		\centering
+		\begin{minipage}[t]{0.48\textwidth}
+			\centering
+			\includegraphics[width=8cm]{fig30.png}
+		\end{minipage}
+		\begin{minipage}[t]{0.48\textwidth}
+			\centering
+			\includegraphics[width=8cm]{fig31.png}
+		\end{minipage}
+		\caption{Step response for the decoupled system (zero initial condition)}
+		\label{fig21}
+	\end{figure}
+
+	Fig.~\ref{fig22} also gives the system response with non-zero initial state $x_{0}$. The closed-loop system is external(BIBO) stable. 
 	
+	\begin{figure}[H]
+		\centering
+		\begin{minipage}[t]{0.48\textwidth}
+			\centering
+			\includegraphics[width=6cm]{fig32.png}
+		\end{minipage}
+		\begin{minipage}[t]{0.48\textwidth}
+			\centering
+			\includegraphics[width=6cm]{fig33.png}
+		\end{minipage}
+		\begin{minipage}[t]{0.48\textwidth}
+			\centering
+			\includegraphics[width=6cm]{fig34.png}
+		\end{minipage}
+		\begin{minipage}[t]{0.48\textwidth}
+			\centering
+			\includegraphics[width=6cm]{fig35.png}
+		\end{minipage}
+		\caption{Step response of the decoupled system for 4 combination cases of inputs (non-zero initial condition)}
+		\label{fig22}
+	\end{figure}
 	
+	However, the state feedback controller can't ensure the internal stability. To investigate it, we utilize the state observer to check the six state responses after given a step signal in the first channel. The response curve is given in Fig~\ref{fig23}, where the second and fifth states are unstable by the decoupling controller and the system is only BIBO stable but not internally stable.
 	
+	 \begin{figure}[H]
+	 	\centering
+	 	\includegraphics[width=8cm]{fig36.png}
+	 	\caption{Six state response of the decoupled system (step signal in the first channel)}
+	 	\label{fig23}
+	 \end{figure}
 	
 	
 	

@@ -10,6 +10,7 @@ t = 0 : 0.1 : 10;
 u1 = [ones(size(t,2),1),zeros(size(t,2),1)];
 u2 = [zeros(size(t,2),1),ones(size(t,2),1)];
 u0 = [zeros(size(t,2),1),zeros(size(t,2),1)];
+u3 = [ones(size(t,2),1),ones(size(t,2),1)];
 
 %% Q1
 %   pole placement feedback
@@ -544,22 +545,35 @@ xlabel('Time (sec)');
 ylabel('y');
 sgtitle('Output response with input u=[0 1]');
 
-% % check if external stable
-% syms s;
-% H4 = C2/(s*eye(6)-A+B*K4)*B*F4;
-% 
-% [numerator,denominator]=numden(H4);
-% n11=double(coeffs(numerator(1,1)));
-% n22=double(coeffs(numerator(2,2)));
-% d11=double(coeffs(denominator(1,1)));
-% d22=double(coeffs(denominator(2,2)));
-% G11=tf(n11,d11);
-% G22=tf(n22,d22);
-% figure(12);
-% subplot(2,1,1);
-% step(G11);
-% subplot(2,1,2);
-% step(G22);
+% u3=[1 1]
+[y, t, x] = lsim(ss_q4, u3, t, x0);
+q4_info = stepinfo(y,t);
+
+figure(18);
+for i = 1:2
+    plot(t,y(:,i));
+    legend_str{i} = ['y',num2str(i)];
+    hold on;
+end
+legend(legend_str);
+xlabel('Time (sec)');
+ylabel('y');
+sgtitle('Output response with input u=[1 1]');
+
+
+% u3=[0 0]
+[y, t, x] = lsim(ss_q4, u0, t, x0);
+q4_info = stepinfo(y,t);
+figure(19);
+for i = 1:2
+    plot(t,y(:,i));
+    legend_str{i} = ['y',num2str(i)];
+    hold on;
+end
+legend(legend_str);
+xlabel('Time (sec)');
+ylabel('y');
+sgtitle('Output response with input u=[0 0]');
 
 %   check if internally stable
 p=pole(ss_q4);
@@ -571,7 +585,7 @@ end
 
 % also plot x to check internal instability
 [y,t,x]=lsim(ss_q4, u1, t, x0);
-figure(18);
+figure(20);
 for i=1:6
     subplot(3,2,i);
     plot(t,x(:,i));
@@ -580,13 +594,16 @@ for i=1:6
     ylabel(['x',num2str(i)]);
 end
 sgtitle('Response of x with input u=[1 0] and initial state x0')
-
+%%
 % 这里状态应该是看不到的，做完第三题再回头看
+% ss_q4 = ss(A-B*K4, B*F4, C2, D2);
+% 用 state observer 去看
+
 
 %%
-% 不知道输出反馈能否使内部稳定，做完第三题再看
+% 不知道输出反馈能否使内部稳定
 % %   2. output feedback
-% [Kd,Ks,H]=decoupler_of(A,B,C2);
+[Kd,Ks,H]=decoupler_of(A,B,C2);
 % 
 % 
 % [K41,K411] = pole_placement(A-B*Kd, B);

@@ -1,4 +1,4 @@
-function [Kd,Ks,H] = decoupler_of(A,B,C)
+function [Kd,Ks,H_dot] = decoupler_of(A,B,C)
 %DECOUPLER_OF 此处显示有关此函数的摘要
 %   此处显示详细说明
 D=[0,0;0,0];
@@ -33,42 +33,74 @@ sr1 = root(5);
 sr2 = root(6);
 sr3 = root(7);
 sr4 = root(8);
-root2=vpa(solve(den(1,1)==0));
-sr11=root2(1);
-sr22=root2(2);
-sr33=root2(3);
-tmp = (s-sr11)*(s-sr22)*(s-sr33)/((s-sr1)*(s-sr2)*(s-sr3)*(s-sr4));
-Ks=[tmp,0; 0,tmp];
-K=Kd*Ks;
 
-H=inv(eye(2)+GKd*Ks)*GKd*Ks;
+tmp=1;
+% tmp = (s-sr1)*(s-sr2)*(s-sr3)*(s-sr4);
+% tmp = (s-sr1)*(s-sr2)*(s-sr3)*(s-sr4)*(s+1)^4;
+Ks_dot=[1/tmp,0; 0,1/tmp];
+K=Kd*Ks_dot;
 
-[num,den]=numden(K);
+H=GKd*Ks_dot/(eye(2)+GKd*Ks_dot);
+h11=H(1,1);
+h22=H(2,2);
 
-damp = 0.707;
-wn = 1.13;
-lamda1 = -damp*wn + wn*sqrt(1-damp*damp)*1i;
-lamda2 = -damp*wn - wn*sqrt(1-damp*damp)*1i;
-lamda3 = -1.6;
-lamda4 = -2.4;
-lamda5 = -3.2;
-lamda6 = -4.0;
-p1 = [lamda1 lamda2 lamda3 lamda4 lamda5 lamda6];
-p2 = [lamda3 lamda4 lamda5 lamda6];
+[num11,den11]=numden(h11);
+num11=double(coeffs(num11));
+den11=double(coeffs(den11));
+[num22,den22]=numden(h22);
+num22=double(coeffs(num22));
+den22=double(coeffs(den22));
 
-[A1dot,B1dot,C1dot,D1dot]=tf2ss(num(1,1),den(1,1));
-K41 = place(A1dot,B1dot,p1);
+[A11,B11,C11,D11] = tf2ss(num11,den11);
+[A22,B22,C22,D22] = tf2ss(num22,den22);
+% sys1 = tf2ss(num11,den11);
+% sys2 = tf2ss(num22,den22);
 
-[A2dot,B2dot,C2dot,D2dot]=tf2ss(num(2,2),den(2,2));
-K42 = place(A1dot,B1dot,p1);
+% Q = eye(8);
+% R = 1;
+% 
+% % K11=lqr_control(A11,B11,Q,R);
+% % K22=lqr_control(A22,B22,Q,R);
+% 
+% K11=lqr(A11,B11,Q,R,0);
+% K22=lqr(A11,B11,Q,R,0);
 
-t = 0 : 0.1 : 10;
-Aprime1 = A1dot-B1dot*K41;
-ss1 = ss(Aprime, B1dot, C, D);
-u1 = [ones(size(t,2),1),zeros(size(t,2),1)];
-x = zeros(6,1);
-[y, tout, x] = lsim(ss, u1, t, x0);
-plot(t,x);
+damp = 0.9;
+wn=10;
+% lamda1 = -(damp*wn + wn*sqrt(1-damp*damp)*1i);
+% lamda2 = -(damp*wn - wn*sqrt(1-damp*damp)*1i);
+lamda1 = -10+10*1i;
+lamda2 = -10-10*1i;
+lamda3 = -50;
+lamda4 = -100;
+lamda5 = -150;
+lamda6 = -200;
+lamda7 = -250;
+lamda8 = -300;
+p11 = [lamda1 lamda2 lamda3 lamda4 lamda5 lamda6 lamda7 lamda8];
+p22 = [lamda1 lamda2 lamda3 lamda4 lamda5 lamda6 lamda7 lamda8];
+
+K11=place(A11,B11,p11);
+K22=place(A22,B22,p22);
+
+% H_dot11=ss2tf(A11-B11*K11,B11,C11,D11);
+% H_dot22=ss2tf(A22-B22*K22,B22,C22,D22); 
+
+sys1=ss(A11-B11*K11,B11,C11,D11);
+sys2=ss(A22-B22*K22,B22,C22,D22);
+H_dot11=tf(sys1);
+H_dot22=tf(sys2);
+
+figure(1);
+step(H_dot11);
+% figure(2);
+% step(H_dot22);
+
+Ks11=H_dot11/(1-H_dot11)/GKd(1,1);
+Ks22=H_dot22/(1-H_dot22)/GKd(2,2);
+
+Ks=[Ks11,0;0,Ks22];
+H_dot=[H_dot11,0;0,H_dot22];
 
 end
 
