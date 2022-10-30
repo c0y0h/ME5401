@@ -673,6 +673,164 @@
 
 	Similar with the pole placement methods, LQR controller offers a way to do trade-off between response speed and control signal cost by tuning the weighting matrixes. In practical situation, one can define the most reasonable cost function according to the established mathematic model. Unlike selecting poles by experience and check system performance repeatedly, LQR method can always find the optimal solution as long as the cost function is given.
 	
+	\section{Observer-based LQR control system}
+	
+	\subsection{Method description}
+	
+	\hspace{1.0em}
+	In practice, not all state variables can be measured for a system and an observer is required to estimate these unseen states. Suppose the estimated state is $\hat{x}(t)$ and the true state is $x(t)$, then the state estimate error is
+	
+	\begin{equation}
+	\tilde{x}(t)=x(t)-\hat{x}(t)
+	\label{eq30}
+	\end{equation}
+	
+	We hope the error dynamics is adjustable and converges to zero with time, thus a closed-loop estimator is used (Fig.~\ref{fig15}).
+	
+	\begin{figure}[htbp]
+		\centering
+		\includegraphics[width=0.6\linewidth]{fig20.png}
+		\caption{A closed-loop estimator}
+		\label{fig15}
+	\end{figure}
+
+	The state space equation for estimator is derived in Eq.~\ref{eq31} and also the state estimation error in Eq.~\ref{eq32}.
+	
+	\begin{equation}
+	\dot{\hat{x}}(t)=A\hat{x}(t)+Bu(t)+L(y-C\hat{x})
+	\label{eq31}
+	\end{equation}
+	
+	\begin{equation}
+	\dot{\tilde{x}}(t)=(A-LC)\tilde{x}
+	\label{eq32}
+	\end{equation}
+	
+	Then observer poles can be selected to get the observer gain matrix $L$ using pole placement algorithms. Remember in early sections we simply use the invisible state variables to design the state feedback controller, which is unpractical in actual situations. Now we can implement the estimated state $\hat{x}$ in our LQR controller and evaluate the new closed-loop system. Consider the control law $u=-K\hat{x}+r$ and substitute it into the original state space equation, and also combine with Eq.~\ref{eq32} to form a new system
+		
+	\begin{equation}
+	\begin{split}
+	\begin{aligned}
+		\begin{bmatrix}
+		\dot{x}\\ \dot{\tilde{x}}
+		\end{bmatrix}&=\begin{bmatrix}
+		A-BK &BK \\ 
+		0 &A-LC 
+		\end{bmatrix}
+		\begin{bmatrix}
+		x\\\tilde{x} 
+		\end{bmatrix}+
+		\begin{bmatrix}
+		B\\0 	
+		\end{bmatrix}r
+		\\
+		y&=Cx
+	\label{eq33}
+	\end{aligned}
+	\end{split}
+	\end{equation}
+	
+	From Eq.~\ref{eq33}, we can deduce the Laplace transform of the combined system
+	
+	\begin{gather}
+%	\begin{equation}
+%	\begin{split}
+	X(s)=(sI-A+BK)^{-1}x(0)+(sI-A+BK)^{-1}BK(sI-A+LC)^{-1}\tilde{x}(0)+(sI-A+BK)^{-1}BR(s) \nonumber\\
+	\tilde{X}(s)=(sI-A+LC)^{-1}\tilde{x}(0)
+	\label{eq34}
+%	\end{split}
+%	\end{equation}
+	\end{gather}
+	
+	It is clear that there would be no state estimation error if the initial estimated state is the same with real one ($\tilde{x}(0)=0$). Now that we couldn't acquire the real $x(0)$ in most cases, we assume our initial estimated $\hat{x}(0)$ to be zero.
+	
+	
+	\subsection{Simulation results and discussion}
+	
+	\hspace{1.0em}
+	First we select observer poles 3 times faster than the control poles $p$ used in section 1. Also we modeify the $Q$ and $R$ in LQR controller to achieve a better system performance. The new weighting matrix are $Q=diag\begin{Bmatrix}
+	4&  22&  22&  4&  22&22 
+	\end{Bmatrix}$ and $R=5I$ respectively. The system's zero-state response with a step signal in each channel is given in Fig.~\ref{fig16}. The six responses all have small overshoots and are stabilize with time, but in the left picture the settling time for the first two ouput channels are a little bit longer. We can plot the state estimation error with time in Fig.~\ref{fig17}, where all of the errors quickly converges to zero during the first seconds.
+	
+	\begin{figure}[H]
+		\centering
+		\begin{minipage}[t]{0.48\textwidth}
+			\centering
+			\includegraphics[width=8cm]{fig21.png}
+		\end{minipage}
+		\begin{minipage}[t]{0.48\textwidth}
+			\centering
+			\includegraphics[width=8cm]{fig22.png}
+		\end{minipage}
+		\caption{Step response for the observed-based system}
+		\label{fig16}
+	\end{figure}
+
+	\begin{figure}[H]
+		\centering
+		\begin{minipage}[t]{0.48\textwidth}
+			\centering
+			\includegraphics[width=8cm]{fig23.png}
+		\end{minipage}
+		\begin{minipage}[t]{0.48\textwidth}
+			\centering
+			\includegraphics[width=8cm]{fig24.png}
+		\end{minipage}
+		\caption{Investigation on state estimation error}
+		\label{fig17}
+	\end{figure}
+	
+	Then we keep weighting matrixes unchanged and modify the observer poles. Two new pairs of poles are selected as 2 and 4 times faster than the control poles. The simulation results are illustrated in Fig.~\ref{fig18} and Fig.~\ref{fig19}. We can see that in when the observer poles are too left, overshoots are largely increased while settling time are almost unchanged in both cases.
+	
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.6\linewidth]{fig25.png}
+		\caption{Comparison of system performance with different observer poles (zero input, non-zero condition)}
+		\label{fig18}
+	\end{figure}
+
+	The state estimation error with these two different pairs of poles are given in Fig.~\ref{fig19} and Fig.~\ref{fig20}. It is clearly shown the state estimation error converges to zero faster with observer poles on the more left plain. However, large overshoots may also appear at the same time. 
+
+	\begin{figure}[H]
+		\centering
+		\begin{minipage}[t]{0.48\textwidth}
+			\centering
+			\includegraphics[width=8cm]{fig26.png}
+		\end{minipage}
+		\begin{minipage}[t]{0.48\textwidth}
+			\centering
+			\includegraphics[width=8cm]{fig27.png}
+		\end{minipage}
+		\caption{State estimation error with slower observer poles}
+		\label{fig19}
+	\end{figure}
+	
+	\begin{figure}[H]
+		\centering
+		\begin{minipage}[t]{0.48\textwidth}
+			\centering
+			\includegraphics[width=8cm]{fig28.png}
+		\end{minipage}
+		\begin{minipage}[t]{0.48\textwidth}
+			\centering
+			\includegraphics[width=8cm]{fig29.png}
+		\end{minipage}
+		\caption{State estimation error with faster observer poles}
+		\label{fig20}
+	\end{figure}
+	
+	\section{System decoupling}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	\section{Conclusion}

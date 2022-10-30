@@ -10,7 +10,7 @@ syms s;
 damp = 0.8;
 % wn = 1.13;
 % wn = 3.125;
-wn=2
+wn=2;
 % lamda1 = -2.5*(damp*wn + wn*sqrt(1-damp*damp)*1i);
 % lamda2 = -2.5*(damp*wn - wn*sqrt(1-damp*damp)*1i);
 lamda1 = -(damp*wn + wn*sqrt(1-damp*damp)*1i);

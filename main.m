@@ -205,7 +205,7 @@ K22=dlqr_control(A,B,Q,R);
 
 %   check
 ss_q2 = ss(A-B*K2, B, C, D);
-ss_q2 = ss(A-B*K22, B, C, D);
+% ss_q2 = ss(A-B*K22, B, C, D);
 
 %   u=[1 0]
 [y, t, x] = lsim(ss_q2, u1, t, zeros(6,1));
@@ -300,19 +300,37 @@ sgtitle('Control signal size');
 % on state estimation error and closed-loop control performance. In this step, both
 % the disturbance and set point can be assumed to be zero. (10 points)
 Q = [ 0.2   0   0   0   0   0;
-      0   1   0   0   0   0;
+      0   1.1   0   0   0   0;
       0   0   1.1   0   0   0;
-      0   0   0   0.1   0   0;
+      0   0   0   0.2   0   0;
       0   0   0   0   1.1   0;
       0   0   0   0   0   1.1]*20;
 R = [1   0;
-     0   1]*10;
+     0   1]*5;
 K3=lqr_control(A,B,Q,R);
 
-[L,At,Bt,Ct]=state_observer(K3,A,B,C,D);
+damp = 0.8;
+wn=2;
+lamda1 = -(damp*wn + wn*sqrt(1-damp*damp)*1i);
+lamda2 = -(damp*wn - wn*sqrt(1-damp*damp)*1i);
+lamda3 = -4*damp*wn;
+lamda4 = -4.3*damp*wn;
+lamda5 = -4.6*damp*wn;
+lamda6 = -5.0*damp*wn;
+p1 = [lamda1 lamda2 lamda3 lamda4 lamda5 lamda6]*2.7;
+p2 = [lamda1 lamda2 lamda3 lamda4 lamda5 lamda6]*2;
+p3 = [lamda1 lamda2 lamda3 lamda4 lamda5 lamda6]*4;
+
+[L,At,Bt,Ct]=state_observer(K3,A,B,C,p1);
 
 %   check basic requirements
 ss_q3=ss(At,Bt,Ct,D);
+
+[L,At,Bt,Ct]=state_observer(K3,A,B,C,p2);
+ss_q32=ss(At,Bt,Ct,D);
+
+[L,At,Bt,Ct]=state_observer(K3,A,B,C,p3);
+ss_q33=ss(At,Bt,Ct,D);
 
 xe=x0;
 
@@ -376,11 +394,26 @@ ylabel('Bike Angle (rad)');
 
 %%
 %   task 3 check
+[y,t,x]=lsim(ss_q3,u0,t,[x0;xe]);
+[ydot1,t,xdot1]=lsim(ss_q32,u0,t,[x0;xe]);
+[ydot2,t,xdot2]=lsim(ss_q33,u0,t,[x0;xe]);
+figure(9);
+for i = 1:3
+    subplot(3,1,i);
+    plot(t,y(:,i),'-r',t,ydot1(:,i),'-g',t,ydot2(:,i),'b');
+    legend('3 times faster','2 times faster','4 times faster');
+    title(['Response for y',num2str(i)]);
+    xlabel('Time (sec)');
+    ylabel(['y',num2str(i)]);
+end
+sgtitle('System performance with different observer poles');
+%%
+
 % monitor the state estimation error
 % t1=0:1E-6:0.2;
 t1=0:0.05:1.2;
 u00 = [zeros(size(t1,2),1),zeros(size(t1,2),1)];
-[y,t1,x]=lsim(ss_q3,u00,t1,[x0;xe]);
+[y,t1,x]=lsim(ss_q33,u00,t1,[x0;xe]);
 q3_info = stepinfo(x,t1);
 
 e=x(:,7:end);
