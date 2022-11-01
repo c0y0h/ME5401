@@ -1,4 +1,5 @@
-function [Kd,Ks,H_dot] = decoupler_of(A,B,C)
+function [sys1, sys2,Kd] = decoupler_of(A,B,C)
+% function [sys1, sys2,Kd,Ks,H_dot] = decoupler_of(A,B,C)
 %DECOUPLER_OF 此处显示有关此函数的摘要
 %   此处显示详细说明
 D=[0,0;0,0];
@@ -88,19 +89,21 @@ K22=place(A22,B22,p22);
 
 sys1=ss(A11-B11*K11,B11,C11,D11);
 sys2=ss(A22-B22*K22,B22,C22,D22);
+
 H_dot11=tf(sys1);
 H_dot22=tf(sys2);
 
+
 figure(1);
 step(H_dot11);
-% figure(2);
-% step(H_dot22);
+figure(2);
+step(H_dot22);
 
-Ks11=H_dot11/(1-H_dot11)/GKd(1,1);
-Ks22=H_dot22/(1-H_dot22)/GKd(2,2);
-
-Ks=[Ks11,0;0,Ks22];
-H_dot=[H_dot11,0;0,H_dot22];
+% Ks11=H_dot11/(1-H_dot11)/GKd(1,1);
+% Ks22=H_dot22/(1-H_dot22)/GKd(2,2);
+% 
+% Ks=[Ks11,0;0,Ks22];
+% H_dot=[H_dot11,0;0,H_dot22];
 
 end
 

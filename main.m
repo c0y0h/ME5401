@@ -599,27 +599,68 @@ sgtitle('Response of x with input u=[1 0] and initial state x0')
 % ss_q4 = ss(A-B*K4, B*F4, C2, D2);
 % 用 state observer 去看
 
+damp = 0.8;
+wn=2;
+lamda1 = -(damp*wn + wn*sqrt(1-damp*damp)*1i);
+lamda2 = -(damp*wn - wn*sqrt(1-damp*damp)*1i);
+lamda3 = -4*damp*wn;
+lamda4 = -4.3*damp*wn;
+lamda5 = -4.6*damp*wn;
+lamda6 = -5.0*damp*wn;
+p1 = [lamda1 lamda2 lamda3 lamda4 lamda5 lamda6]*2.7;
+[L4,At4,Bt4,Ct4]=state_observer(K4,A,B,C2,p1);
+ss_q4=ss(At4,Bt4*F4,Ct4,D2);
+
+xe=x0;
+
+t1=0:0.05:1.2;
+u00 = [zeros(size(t1,2),1),zeros(size(t1,2),1)];
+[y,t1,x]=lsim(ss_q4,u00,t1,[x0;xe]);
+
+e=x(:,7:end);
+x=x(:,1:6);
+x_est=x-e;
+
+figure(21);
+for i = 1:6
+    subplot(3,2,i);
+    plot(t1,x(:,i));
+    hold on;
+    plot(t1,x_est(:,i));
+    legend(['x',num2str(i)],['x_{est}',num2str(i)]);
+    title(['Comparison between x',num2str(i),' and x_{est}',num2str(i)]);
+    xlabel('Time (sec)');
+    ylabel(['x',num2str(i)]);
+end
+% legend(legend_str);
+sgtitle('Comparison between x and x_{est}');
+
+[y,t,x]=lsim(ss_q4, u1, t, [x0;xe]);
+e=x(:,7:end);
+x=x(:,1:6);
+x_est=x-e;
+
+figure(22);
+for i = 1:6
+    subplot(3,2,i);
+    plot(t,x(:,i));
+    hold on;
+    plot(t,x_est(:,i));
+    legend(['x',num2str(i)],['x_{est}',num2str(i)]);
+    title(['Comparison between x',num2str(i),' and x_{est}',num2str(i)]);
+    xlabel('Time (sec)');
+    ylabel(['x',num2str(i)]);
+end
+% legend(legend_str);
+sgtitle('Comparison between x and x_{est}');
+
+
 
 %%
 % 不知道输出反馈能否使内部稳定
 % %   2. output feedback
-[Kd,Ks,H]=decoupler_of(A,B,C2);
-% 
-% 
-% [K41,K411] = pole_placement(A-B*Kd, B);
-% 
-% [numerator,denominator]=numden(H);
-% n11=double(coeffs(numerator(1,1)));
-% n12=double(coeffs(numerator(1,2)));
-% n21=double(coeffs(numerator(2,1)));
-% n22=double(coeffs(numerator(2,2)));
-% d11=double(coeffs(denominator(1,1)));
-% d12=double(coeffs(denominator(1,2)));
-% d21=double(coeffs(denominator(2,1)));
-% d22=double(coeffs(denominator(2,2)));
-% 
-% G11=tf(n11,d11);
-% step(G11);
+[sys1,sys2,Kd]=decoupler_of(A,B,C2);
+
 
 
 %% Q5
