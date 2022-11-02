@@ -328,7 +328,7 @@
 	\subsection{Simulation results and refinements}
 	
 	\hspace{1.0em}
-	In this report, the 6 poles are selected as $\lambda_{1,2}=-2.5\pm j1.875, \lambda_{3}=-10, \lambda_{4}=-10.75, \lambda_{5}=-11.5$ and $\lambda_{6}=-12.5$. The final feedback gain matrix $K$ is calculated to be
+	In this report, the 6 poles are selected firstly as $\lambda_{1,2}=-2.5\pm j1.875, \lambda_{3}=-10, \lambda_{4}=-10.75, \lambda_{5}=-11.5$ and $\lambda_{6}=-12.5$. The final feedback gain matrix $K$ is calculated to be
 	
 	\begin{equation}
 	K=\begin{bmatrix}
@@ -354,9 +354,65 @@
 	\label{fig3}
 	\end{figure}
 	
-	The results are unacceptable and need further refinements. Obviously, the bad results are closely realted to the feedback gain matrix $K$, which influnces the system matrix $A-BK$ of closed-loop system. In another point of view, we can find infinite $K$ to place the same poles for a plant as there are infinite system matrixes with the same eigenvalues. 
+	The results are unacceptable and need further refinements. To improve the performance, we use another $A_{d}$ with the same eigenvalues but not in controllable canonical form.
 	
-	Actuallly when tackling pole placement problems for high order system, some pole choices will result in sensitivity problems, which leads to a large gain as in our former method. One robust algorithm was proposed in \cite{kautsky1985robust} and has been applied in matlab function. The aim of this algorithm is to find the feedback gain matrix $K$ that makes $A-BK$ the most robust. One method to measure the robustness of a matrix is to use condition number
+	\begin{equation}
+	A_{d}=\begin{bmatrix}
+	0 &1  &0  &0  &0  &0 \\ 
+	0 &0  &1  &0  &0  &0 \\ 
+	-a_{5} &-a_{4}  &-a_{3}  &0  &0  &0 \\ 
+	0 &0  &0  &0  &1  &0 \\ 
+	0 &0  &0  &0  &0  &1 \\ 
+	0 &0  &0  & -a_{2} &-a_{1}  & -a_{0}
+	\end{bmatrix}
+	\nonumber
+	\end{equation}
+	
+	In this case, we remain all poles unchanged. The resultant feedback gain matrix ${K}'$ is given as below and the simulation results are shown in Fig.~\ref{fig4}. Though large elements exist in ${K}'$, the stable point of both cases are reasonable and the overshoots are greatly reduced, enabling the system to meet the given basic design specifications.
+	
+%	\begin{equation}
+%	{K}'=\begin{bmatrix}
+%	52017 &-42081  &-22487  &-669.9113  &3153.9  &212.4851 \\ 
+%	46.7149 &-97.8079  &-12.8388  &3.0725  &-7.3847  &-0.6644 
+%	\end{bmatrix}
+%	\nonumber
+%	\end{equation}
+
+	\begin{equation}
+	{K}'=\begin{bmatrix}
+	250820 &-210790  &-107620  &-846.8122  &9053.3  &411.9200 \\ 
+	128.1535 &-305.4679  &-31.6386  &6.1301  &-16.3902  &-1.2010 
+	\end{bmatrix}
+	\nonumber
+	\end{equation}
+	
+	\begin{figure}[htbp]
+		\centering
+		\begin{minipage}[t]{0.48\textwidth}
+			\centering
+			\includegraphics[width=8cm]{fig37.png}
+		\end{minipage}
+		\begin{minipage}[t]{0.48\textwidth}
+			\centering
+			\includegraphics[width=8cm]{fig38.png}
+		\end{minipage}
+		\caption{Step response for the closed-loop system with refined ${K}'$}
+		\label{fig4}
+	\end{figure}
+	 
+	We also assume that all six states can be observed and the initial condition is $x_{0}$, their response to zero external inputs is given in Fig.~\ref{fig5}. It can been seen all states converges to zero from the non-zero initial values in less than 5 seconds and the system becomes stable.
+	
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.6\linewidth]{fig39.png}
+		\caption{All state responses with zero inputs for the refined system}
+		\label{fig5}
+	\end{figure} 
+	
+	\subsection{Comparison with "place" function in MATLAB}
+	
+	\hspace{1.0em}
+	Actuallly when tackling pole placement problems for high order system, some pole choices will result in a large gain as in our former methods, which makes it sensitive to noise and causes numerically instable problems. One robust algorithm was proposed in \cite{kautsky1985robust} and has been applied in matlab function (called 'place'). The aim of this algorithm is to find the feedback gain matrix $K$ that makes $A-BK$ the most robust. One method to measure the robustness of a matrix is to use condition number
 	
 	\begin{equation}
 	c_{j}=\frac{1}{s_{j}}=\frac{\left \| y_{j} \right \|_{2} \left \| x_{j} \right \|_{2}}{\left |y_{j}^{T} x_{j}  \right |}
@@ -383,19 +439,19 @@
 	
 	where $\Lambda=diag(\lambda_{1},\lambda_{2},...,\lambda_{n})$, $Z$ is the $Q$ matrix of $B$ and $U_{0}$ is also orthogonal basis of $B$.
 	
-	The same poles are chosen but we use the new method to calculate feedback matrix ${K}'$, the result is given below
+	The same poles are chosen but we use the new method to calculate feedback matrix ${K}''$, the result is given below and we can see the gains become smaller.
 	
 	\begin{equation}
-	{K}'=\begin{bmatrix}
+	{K}''=\begin{bmatrix}
 	8.7165 &-3.6746  &-1.8207  &0.5685  &-0.4985  &-0.0880 \\ 
 	-11.2971 &10.6474  &5.4543  &-0.8739  &1.4368  &0.3794 
 	\end{bmatrix}
 	\nonumber
 	\end{equation}
 	
-	The step response for the new closed-loop system is shown in Fig.~\ref{fig4} and both the overshoot and settling time meet the requirements. Now assume that all six states can be observed, their response with non-zero initial condition $x_{0}$ to zero external inputs is given in Fig.~\ref{fig5}. It is clearly shown that all states are stable and no weired values apper.
+	The step response for the new closed-loop system is shown in Fig.~\ref{fig6}, where both the overshoot and settling time meet the requirements. Compared with our former results, this system is stabilized more quickly and overshoots are smaller in most cases. All six state responses with non-zero initial condition $x_{0}$ and zero external inputs is given in Fig.~\ref{fig7}. Compared to our refined method with gain matrix ${K}'$, it achieves much smaller overshoots as well as less settling time. Moreover, the robust system matrix given by "place" function in matlab will also be less sensitive to noise than our simple method. 
 	
-	\begin{figure}[htbp]
+	\begin{figure}[H]
 		\centering
 		\begin{minipage}[t]{0.48\textwidth}
 			\centering
@@ -405,65 +461,72 @@
 			\centering
 			\includegraphics[width=8cm]{fig6.png}
 		\end{minipage}
-		\caption{Step response for the new closed-loop system}
-		\label{fig4}
+		\caption{Step response for the new closed-loop system by "place" function}
+		\label{fig6}
 	\end{figure}
 
-	\begin{figure}[htbp]
+	\begin{figure}[H]
 		\centering
-		\includegraphics[width=0.8\linewidth]{fig7.png}
-		\caption{All state responses with zero inputs}
-		\label{fig5}
+		\includegraphics[width=0.6\linewidth]{fig7.png}
+		\caption{All state responses with zero inputs by "place" function}
+		\label{fig7}
 	\end{figure} 
 	
-	\subsection{Discussion}
+	\subsection{Discussion on pole positions}
 	
 	\hspace{1.0em}
-	With refinements on feedback gain matrix $K$, the overshoot of the closed-loop system is largely cut down as well as its sensitivity to noise. On the other side, the system performance is also largely affected by different pole choosing strategies. Although one can always stablize the system and make system response faster by designing poles on the very left plain, the input cost will increase in this case. To investigate the influence of poles, two more groups of poles are used. The new poles are listed as followings
+	Here we still choose our self-designed feedback gain matrix ${K}'$ to study effects of different poles on system performance. Although one can always stabilize the system and make response faster by designing poles on the very left plain, the input cost will increase as well. To investigate the influence of poles, two more groups of poles are used. The new poles are listed as following.
 	
 	\begin{equation}
 	\begin{split}
 	\begin{aligned}
 	{p}'&= \begin{bmatrix}
-	-1.6+j0.96 &-1.6-j0.96  &-6.4  &-6.88  &-7.36  &-8
+	-1.25+j1.875 &-1.25-j1.875  &-5  &-5.375  &-5.75  &-6.25
 	\end{bmatrix}\\
 	{p}''&= \begin{bmatrix}
-	-4+j3 &-4-j3  &-16  &-17.2  &-18.4  &-20 
+	-5+j1.875 &-5-j1.875 &-20  &-21.5  &-23  &-25 
 	\end{bmatrix}
 	\end{aligned}
 	\end{split}
 	\nonumber
 	\end{equation}
 	
-	It is clearly shown in Fig.~\ref{fig6}, \ref{fig7} and \ref{fig8} that the larger negative real parts the pole has, the more control effect is required. However if the designed poles are too right, large overshoot or long settling time may be expected to appear (as is shown in Fig.~\ref{fig9}).
+	According to the new poles, two closed-loop system are established. Fig.~\ref{fig8} gives a comparison between their zero input response with non-zero initial state $x_{0}$. It is clear that the system response will be faster if designed poles have larger negative real parts. On the other side, Fig.~\ref{fig9} illustrates that faster poles also result in a higher control cost. 
+	
+	\begin{figure}[H]
+		\centering
+		\begin{minipage}[t]{0.48\textwidth}
+			\centering
+			\includegraphics[width=8cm]{fig41.png}
+		\end{minipage}
+		\begin{minipage}[t]{0.48\textwidth}
+			\centering
+			\includegraphics[width=8cm]{fig43.png}
+		\end{minipage}
+		\caption{Step response and control cost of system with poles ${p}$}
+		\label{fig8}
+	\end{figure}
+	
 	
 	\begin{figure*}[htbp] %通栏
 		\begin{minipage}[t]{0.33\linewidth} %调节两个子图左右间距
 			\centering
-			\includegraphics[width=2.4in, height=1.9in]{fig8.png} %调节单个子图大小
-			\caption{Control signal size with $p$} %子图下标题
-			\label{fig6}
+			\includegraphics[width=2.2in, height=1.74in]{fig40.png} %调节单个子图大小
 		\end{minipage}%
 		\begin{minipage}[t]{0.33\linewidth}
 			\centering
-			\includegraphics[width=2.4in, height=1.9in]{fig9.png}
-			\caption{Control signal size with ${p}'$}
-			\label{fig7}
+			\includegraphics[width=2.2in, height=1.74in]{fig42.png}
 		\end{minipage}%
 		\begin{minipage}[t]{0.33\linewidth}
 			\centering
-			\includegraphics[width=2.4in, height=1.9in]{fig10.png}
-			\caption{Control signal size with ${p}''$}
-			\label{fig8}
+			\includegraphics[width=2.2in, height=1.74in]{fig44.png}
+%			\caption{Control signal size with ${p}''$}
+%			\label{fig8}
 		\end{minipage}
+		\caption{Control signal size with $p$, ${p}'$ and ${p}''$ respectively}
+		\label{fig9}
 	\end{figure*}
 
-	\begin{figure}[htbp]
-		\centering
-		\includegraphics[width=0.6\linewidth]{fig11.png}
-		\caption{Large overshoot show when given ${p}''$ with small negative real parts}
-		\label{fig9}
-	\end{figure}
 	
 	Pole placement methods have the magic of easily stabilizing the system and ensuring the expected design performance by using state feedback controller. On the other hand, poles of systems are hard to select and have no strict standards. In next section, linear quadratic regulator will be introduced to solve the trade-off problem between system performance and control cost.
 	
@@ -613,7 +676,7 @@
 	\nonumber
 	\end{equation}
 	
-	The simulation results is shown in Fig.~\ref{fig11}. Compared with the eigenvalue-based one, this discrete lqr method have a little more overshoot but also cut down the settling time in most cases. The dlqr method is also computationally efficient because the matrix $P$ will quickly converges while the first method always need to handle the eigenvalue problem. However, when step signal is added in first input channel, the settling time is over 5s and unable to meet the basic design specifications. Therefore we will still use the eigenvalue-based method in the following discussion.
+	The simulation results is shown in Fig.~\ref{fig11}. Compared with the eigenvalue-based one, this discrete lqr method have a little larger overshoot but also cut down the settling time in most cases. The dlqr method is also computationally efficient because the matrix $P$ will quickly converges while the first method always need to handle the eigenvalue problem. However, when step signal is added in first input channel, the settling time of response in the second output channel is over 5s and unable to meet the basic design specifications. Therefore we will still use the eigenvalue-based method in the following discussion.
 	
 	\begin{figure}[htbp]
 		\centering
@@ -671,7 +734,7 @@
 		\label{fig14}
 	\end{figure}
 
-	Similar with the pole placement methods, LQR controller offers a way to do trade-off between response speed and control signal cost by tuning the weighting matrixes. In practical situation, one can define the most reasonable cost function according to the established mathematic model. Unlike selecting poles by experience and check system performance repeatedly, LQR method can always find the optimal solution as long as the cost function is given.
+	Different from the pole placement methods, LQR method offers a way to do trade-off between response speed and control signal cost by tuning the weighting matrixes. In practical situation, one can define the most reasonable cost function according to the established mathematic model. Unlike selecting poles by experience and check system performance repeatedly, LQR method can always find the optimal solution as long as the cost function is given.
 	
 	\section{Observer-based LQR control system}
 	
@@ -748,9 +811,9 @@
 	\subsection{Simulation results and discussion}
 	
 	\hspace{1.0em}
-	First we select observer poles 3 times faster than the control poles $p$ used in section 1. Also we modeify the $Q$ and $R$ in LQR controller to achieve a better system performance. The new weighting matrix are $Q=diag\begin{Bmatrix}
+	First we select observer poles 2.7 times faster than the control poles $p$ used in section 1. Also we modeify the $Q$ and $R$ in LQR controller to achieve a better system performance. The new weighting matrix are $Q=diag\begin{Bmatrix}
 	4&  22&  22&  4&  22&22 
-	\end{Bmatrix}$ and $R=5I$ respectively. The system's zero-state response with a step signal in each channel is given in Fig.~\ref{fig16}. The six responses all have small overshoots and are stabilize with time, but in the left picture the settling time for the first ouput channel is a little bit longer. We can plot the state estimation error with time in Fig.~\ref{fig17}, where all of the errors quickly converges to zero in 1s.
+	\end{Bmatrix}$ and $R=5I$ respectively. The system's zero-state response with a step signal in each channel is given in Fig.~\ref{fig16}. The six responses all have small overshoots and are stable with time, but in the left picture the settling time for the first ouput channel is a little bit longer. We can plot the state estimation error with time in Fig.~\ref{fig17}, where all of the errors quickly converges to zero in 1s.
 	
 	\begin{figure}[H]
 		\centering
@@ -933,7 +996,7 @@
 	\subsection{Simulation results and discussion}
 	
 	\hspace{1.0em}
-	For the state feedback method, the relative degree $\sigma_{1} and \sigma_{2}$ are checked to be both 2. Then we define the stable characteristic polynomial of each input-output pair to be $\phi _{fi}(A)=(A-\lambda_{i1})(A-\lambda_{i2}), i=1,2$. Here we use $\lambda_{i 1,2}=-0.8+j0.8$ and $\lambda_{i 3}=-1.6,\lambda_{i 4}=-1.7$. The final result of $K$ and $F$ in control law is given as follows.
+	Since the state space equation has been given, we choose the state feedback method here. The relative degree $\sigma_{1}$ and $\sigma_{2}$ are checked to be both 2. Then we define the stable characteristic polynomial of each input-output pair to be $\phi _{fi}(A)=(A-\lambda_{i1})(A-\lambda_{i2}), i=1,2$. Here we choose $\lambda_{11}$ and $\lambda_{12}$ to be $-0.8\pm j0.8$ while $\lambda_{21}=-1.6,\lambda_{22}=-1.7$. The final result of $K$ and $F$ in control law is given as follows.
 	
 	\begin{equation}
 	K=\begin{pmatrix}
@@ -947,7 +1010,7 @@
 	\nonumber
 	\end{equation}
 	
-	Now first check the closed-loop system's zero-state response with step signal for each input channel. From Fig.~\ref{fig21}, it is clear that the each output channel is influenced by its corresponding input signal, which means the system is successfully decoupled. The system also meets the basic design requirements and have a small overshoot. 
+	Now first check the closed-loop system's zero-state response with step signal for each input channel. From Fig.~\ref{fig21}, it is clear that the each output channel is only influenced by its corresponding input signal, which means the system is successfully decoupled. The system also meets the basic design requirements and have a small overshoot. Fig.~\ref{fig22} also gives the system response with non-zero initial state $x_{0}$ and we can know the closed-loop system is external(BIBO) stable. 
 	
 	\begin{figure}[H]
 		\centering
@@ -962,8 +1025,6 @@
 		\caption{Step response for the decoupled system (zero initial condition)}
 		\label{fig21}
 	\end{figure}
-
-	Fig.~\ref{fig22} also gives the system response with non-zero initial state $x_{0}$. The closed-loop system is external(BIBO) stable. 
 	
 	\begin{figure}[H]
 		\centering
@@ -983,18 +1044,158 @@
 			\centering
 			\includegraphics[width=6cm]{fig35.png}
 		\end{minipage}
-		\caption{Step response of the decoupled system for 4 combination cases of inputs (non-zero initial condition)}
+		\caption{Step response of the decoupled system for 4 combinations of inputs (non-zero initial condition)}
 		\label{fig22}
 	\end{figure}
 	
-	However, the state feedback controller can't ensure the internal stability. To investigate it, we utilize the state observer to check the six state responses after given a step signal in the first channel. The response curve is given in Fig~\ref{fig23}, where the second and fifth states are unstable by the decoupling controller and the system is only BIBO stable but not internally stable. The poles of the system is also checked and one has positive real part (2.4821), which results in the instability.
+	However, the state feedback controller can't ensure the internal stability. To investigate it, we utilize the state observer designed in Section 4 to check the six state responses after given a step signal in the first channel. The response curve is given in Fig.~\ref{fig23}, where the second and fifth states are unstable. Therefore the system is only BIBO stable but not internally stable. The poles of the system is also checked to have one positive real part (2.4821), which results in the instability.
 	
 	 \begin{figure}[H]
 	 	\centering
-	 	\includegraphics[width=8cm]{fig36.png}
+	 	\includegraphics[width=10cm]{fig36.png}
 	 	\caption{Six state response of the decoupled system (step signal in the first channel)}
 	 	\label{fig23}
 	 \end{figure}
+	
+	 When designing state feedback controller, we only get two relative degree $\sigma_{i}$ to be both 2, which finally leads to the instability. It can also be explained in a view of transfer function. The equivalent feedback transfer function $K(s)$ here actually have an unstable zero-pole cancellation with the original transfer function $G(s)$ so that the closed-loop system shows BIBO stable but not internally stable.
+	
+	
+	\section{Servo control}
+	
+	\subsection{Method description}
+	
+	\hspace{1.0em}
+	In this section, the three outputs are required to track the set point $y_{sp}$ without steady state error regardless of whether step disturbances are added to input channel. $y_{sp}$ is a constant vector defined by
+	
+	\begin{equation}
+	y_{sp}=-\frac{1}{10}CA^{-1}B\begin{pmatrix}
+	-0.5+(a-b)/20\\ 
+	0.1+(b-c)/(a+d+10)
+	\end{pmatrix}
+	\label{eq42}
+	\end{equation}
+	
+	First we write the system as
+	
+	\begin{equation}
+	\begin{split}
+	\begin{aligned}
+	\dot{x}&=Ax+Bu+B_{w}w\\
+	y&=Cx
+	\end{aligned}
+	\end{split}
+	\label{eq43}
+	\end{equation}
+	
+	Since both the setpoint signal and disturbance are step type, an integrator controller is induced to each channel:
+	
+	\begin{equation}
+	\int_{0}^{t}e(\tau )d\tau = \int_{0}^{t}(r-y(\tau))d\tau 
+	\label{eq44}
+	\end{equation}
+	
+	Then we combine Eq.~\ref{eq43} with Eq.~\ref{eq44} and get an augmented closed-loop system as below
+	
+	\begin{equation}
+	\begin{split}
+	\begin{aligned}
+	\begin{pmatrix}
+	\dot{x}\\ 
+	\dot{v}
+	\end{pmatrix}&=\begin{pmatrix}
+	A &0 \\ 
+	-C & 0
+	\end{pmatrix}\begin{pmatrix}
+	x\\ 
+	v
+	\end{pmatrix}+\begin{pmatrix}
+	B\\ 
+	0
+	\end{pmatrix}u+\begin{pmatrix}
+	B_{w}\\ 
+	0
+	\end{pmatrix}w+\begin{pmatrix}
+	0\\ 
+	I
+	\end{pmatrix}r\\
+	y&=\begin{pmatrix}
+	C &0 
+	\end{pmatrix}\begin{pmatrix}
+	x\\ 
+	v
+	\end{pmatrix}
+	\end{aligned}
+	\end{split}
+	\label{eq45}
+	\end{equation}
+	
+	If the original plant is controllable and it satisfies $rank\begin{pmatrix}
+	A &B \\ 
+	C &0 
+	\end{pmatrix}=n+m$, where $n$ and $m$ are dimension of state variable and input vector respectively, the augmented system is controllable. Then a PI state feedback control law $u(t)=-K_{1}x-K_{2}\int_{0}^{t}e(\tau )d\tau$ can be used to stabilize the system. It can also be written in a vector form:
+	
+	\begin{equation}
+	u=-K\bar{x}=-\begin{pmatrix}
+	K_{1} & K_{2}
+	\end{pmatrix}\begin{pmatrix}
+	x\\ 
+	v
+	\end{pmatrix}
+	\label{eq46}
+	\end{equation}
+	
+	Then the resultant closed-loop system becomes
+	
+	\begin{equation}
+	\begin{split}
+	\begin{aligned}
+	\begin{pmatrix}
+	\dot{x}\\ 
+	\dot{v}
+	\end{pmatrix}&=\begin{pmatrix}
+	A-BK_{1} &-BK_{2} \\ 
+	-C & 0
+	\end{pmatrix}\begin{pmatrix}
+	x\\ 
+	v
+	\end{pmatrix}+\begin{pmatrix}
+	B_{w}\\ 
+	0
+	\end{pmatrix}w+\begin{pmatrix}
+	0\\ 
+	I
+	\end{pmatrix}r\\
+	y&=\begin{pmatrix}
+	C &0 
+	\end{pmatrix}\begin{pmatrix}
+	x\\ 
+	v
+	\end{pmatrix}
+	\end{aligned}
+	\end{split}
+	\label{eq47}
+	\end{equation}
+	
+	Note that only three cheap sensors can be used to measure the output, we cannot get all six state variables directly. Instead, we use the full-order state observer designed in Section 4 to get estimated $\hat{x}$, thus the control law becomes $u(t)=-K_{1}\hat{x}-K_{2}\int_{0}^{t}e(\tau )d\tau$. The feedback $K$ can be obtained by former LQR method.
+	
+	
+	\subsection{Simulation results and discussion}
+	
+	\hspace{1.0em}
+	The operating set point here is $\begin{pmatrix}
+	0.7398 &0.7502  &0.3988 
+	\end{pmatrix}^{T}$ and a step disturbance for the two inputs $w=\begin{pmatrix}
+	-1 &1 
+	\end{pmatrix}^{T}$ takes effect from $t_{d}=10s$.
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	

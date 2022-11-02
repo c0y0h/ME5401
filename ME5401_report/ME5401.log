@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2021.12.29)  30 OCT 2022 18:47
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2021.12.29)  2 NOV 2022 17:01
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -615,7 +615,7 @@ Package caption Info: End \AtBeginDocument code.
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-<logo.png, id=84, 301.125pt x 137.51375pt>
+<logo.png, id=100, 301.125pt x 137.51375pt>
 File: logo.png Graphic file (type png)
 <use logo.png>
 Package pdftex.def Info: logo.png  used on input line 65.
@@ -649,19 +649,19 @@ l.114 	\newpage
 \openout4 = `ME5401.toc'.
 
  [2]
-<fig1.png, id=128, 632.3625pt x 421.575pt>
+<fig1.png, id=148, 632.3625pt x 421.575pt>
 File: fig1.png Graphic file (type png)
 <use fig1.png>
 Package pdftex.def Info: fig1.png  used on input line 126.
 (pdftex.def)             Requested size: 182.09486pt x 121.39163pt.
-<fig2.png, id=130, 662.475pt x 406.51875pt>
+<fig2.png, id=150, 662.475pt x 406.51875pt>
 File: fig2.png Graphic file (type png)
 <use fig2.png>
 Package pdftex.def Info: fig2.png  used on input line 135.
 (pdftex.def)             Requested size: 273.14923pt x 167.61041pt.
  [3 <./fig1.png> <./fig2.png>] [4]
 [5]
-<fig3.png, id=178, 526.96875pt x 395.22656pt>
+<fig3.png, id=198, 526.96875pt x 395.22656pt>
 File: fig3.png Graphic file (type png)
 <use fig3.png>
 Package pdftex.def Info: fig3.png  used on input line 347.
@@ -671,7 +671,7 @@ Overfull \hbox (9.10683pt too wide) in paragraph at lines 347--348
  [][] 
  []
 
-<fig4.png, id=179, 526.96875pt x 395.22656pt>
+<fig4.png, id=199, 526.96875pt x 395.22656pt>
 File: fig4.png Graphic file (type png)
 <use fig4.png>
 Package pdftex.def Info: fig4.png  used on input line 351.
@@ -681,341 +681,424 @@ Overfull \hbox (9.10683pt too wide) in paragraph at lines 351--352
  [][] 
  []
 
+<fig37.png, id=201, 526.96875pt x 395.22656pt>
+File: fig37.png Graphic file (type png)
+<use fig37.png>
+Package pdftex.def Info: fig37.png  used on input line 393.
+(pdftex.def)             Requested size: 227.62204pt x 170.71602pt.
+
+Overfull \hbox (9.10683pt too wide) in paragraph at lines 393--394
+ [][] 
+ []
+
+<fig38.png, id=202, 526.96875pt x 395.22656pt>
+File: fig38.png Graphic file (type png)
+<use fig38.png>
+Package pdftex.def Info: fig38.png  used on input line 397.
+(pdftex.def)             Requested size: 227.62204pt x 170.71602pt.
+
+Overfull \hbox (9.10683pt too wide) in paragraph at lines 397--398
+ [][] 
+ []
+
+<fig39.png, id=204, 526.96875pt x 395.22656pt>
+File: fig39.png Graphic file (type png)
+<use fig39.png>
+Package pdftex.def Info: fig39.png  used on input line 407.
+(pdftex.def)             Requested size: 273.14923pt x 204.86768pt.
 [6pdfTeX warning (ext4): destination with the same identifier (name{equation.2.
 16}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.379 	\begin{equation}
-                        <./fig3.png (PNG copy)> <./fig4.png (PNG copy)>]
-<fig5.png, id=192, 702.625pt x 526.96875pt>
+l.411 	
+       pdfTeX warning (ext4): destination with the same identifier (name{equati
+on.2.16}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.411 	
+        <./fig3.png (PNG copy)> <./fig4.png (PNG copy)>]pdfTeX warning (ext4): 
+destination with the same identifier (name{equation.2.16}) has been already use
+d, duplicate ignored
+<to be read again> 
+                   \relax 
+l.417 	\begin{equation}
+                       pdfTeX warning (ext4): destination with the same identif
+ier (name{equation.2.16}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.417 	\begin{equation}
+                       pdfTeX warning (ext4): destination with the same identif
+ier (name{equation.2.16}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.417 	\begin{equation}
+                       pdfTeX warning (ext4): destination with the same identif
+ier (name{equation.2.16}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.417 	\begin{equation}
+                        [7 <./fig37.png (PNG copy)> <./fig38.png (PNG copy)> <.
+/fig39.png (PNG copy)>]
+<fig5.png, id=225, 526.96875pt x 395.22656pt>
 File: fig5.png Graphic file (type png)
 <use fig5.png>
-Package pdftex.def Info: fig5.png  used on input line 402.
+Package pdftex.def Info: fig5.png  used on input line 458.
 (pdftex.def)             Requested size: 227.62204pt x 170.71602pt.
 
-Overfull \hbox (9.10683pt too wide) in paragraph at lines 402--403
+Overfull \hbox (9.10683pt too wide) in paragraph at lines 458--459
  [][] 
  []
 
-<fig6.png, id=193, 526.96875pt x 395.22656pt>
+<fig6.png, id=226, 526.96875pt x 395.22656pt>
 File: fig6.png Graphic file (type png)
 <use fig6.png>
-Package pdftex.def Info: fig6.png  used on input line 406.
+Package pdftex.def Info: fig6.png  used on input line 462.
 (pdftex.def)             Requested size: 227.62204pt x 170.71602pt.
 
-Overfull \hbox (9.10683pt too wide) in paragraph at lines 406--407
+Overfull \hbox (9.10683pt too wide) in paragraph at lines 462--463
  [][] 
  []
 
-<fig7.png, id=194, 526.96875pt x 395.22656pt>
+<fig7.png, id=227, 526.96875pt x 395.22656pt>
 File: fig7.png Graphic file (type png)
 <use fig7.png>
-Package pdftex.def Info: fig7.png  used on input line 414.
-(pdftex.def)             Requested size: 364.19667pt x 273.1589pt.
-<fig8.png, id=199, 526.96875pt x 395.22656pt>
-File: fig8.png Graphic file (type png)
-<use fig8.png>
-Package pdftex.def Info: fig8.png  used on input line 443.
-(pdftex.def)             Requested size: 173.44992pt x 137.31218pt.
+Package pdftex.def Info: fig7.png  used on input line 470.
+(pdftex.def)             Requested size: 273.14923pt x 204.86768pt.
+[8 <./fig5.png (PNG copy)> <./fig6.png (PNG copy)> <./fig7.png (PNG copy)>]pdfT
+eX warning (ext4): destination with the same identifier (name{equation.2.19}) h
+as been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.480 	\begin{equation}
+                       pdfTeX warning (ext4): destination with the same identif
+ier (name{equation.2.19}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.480 	\begin{equation}
+                       pdfTeX warning (ext4): destination with the same identif
+ier (name{equation.2.19}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.480 	\begin{equation}
+                       pdfTeX warning (ext4): destination with the same identif
+ier (name{equation.2.19}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.480 	\begin{equation}
+                       
+<fig41.png, id=238, 526.96875pt x 395.22656pt>
+File: fig41.png Graphic file (type png)
+<use fig41.png>
+Package pdftex.def Info: fig41.png  used on input line 500.
+(pdftex.def)             Requested size: 227.62204pt x 170.71602pt.
 
-Overfull \hbox (23.21854pt too wide) in paragraph at lines 443--444
+Overfull \hbox (9.10683pt too wide) in paragraph at lines 500--501
  [][] 
  []
 
-<fig9.png, id=200, 526.96875pt x 395.22656pt>
-File: fig9.png Graphic file (type png)
-<use fig9.png>
-Package pdftex.def Info: fig9.png  used on input line 449.
-(pdftex.def)             Requested size: 173.44992pt x 137.31218pt.
+<fig43.png, id=239, 526.96875pt x 395.22656pt>
+File: fig43.png Graphic file (type png)
+<use fig43.png>
+Package pdftex.def Info: fig43.png  used on input line 504.
+(pdftex.def)             Requested size: 227.62204pt x 170.71602pt.
 
-Overfull \hbox (23.21854pt too wide) in paragraph at lines 449--450
+Overfull \hbox (9.10683pt too wide) in paragraph at lines 504--505
  [][] 
  []
 
-<fig10.png, id=201, 526.96875pt x 395.22656pt>
-File: fig10.png Graphic file (type png)
-<use fig10.png>
-Package pdftex.def Info: fig10.png  used on input line 455.
-(pdftex.def)             Requested size: 173.44992pt x 137.31218pt.
+<fig40.png, id=240, 526.96875pt x 395.22656pt>
+File: fig40.png Graphic file (type png)
+<use fig40.png>
+Package pdftex.def Info: fig40.png  used on input line 514.
+(pdftex.def)             Requested size: 158.99242pt x 125.75139pt.
 
-Overfull \hbox (23.21854pt too wide) in paragraph at lines 455--456
+Overfull \hbox (8.76103pt too wide) in paragraph at lines 514--515
  [][] 
  []
 
-<fig11.png, id=202, 694.595pt x 160.6pt>
-File: fig11.png Graphic file (type png)
-<use fig11.png>
-Package pdftex.def Info: fig11.png  used on input line 463.
-(pdftex.def)             Requested size: 273.14923pt x 63.15816pt.
-[7pdfTeX warning (ext4): destination with the same identifier (name{equation.2.
-19}) has been already used, duplicate ignored
+<fig42.png, id=241, 526.96875pt x 395.22656pt>
+File: fig42.png Graphic file (type png)
+<use fig42.png>
+Package pdftex.def Info: fig42.png  used on input line 518.
+(pdftex.def)             Requested size: 158.99242pt x 125.75139pt.
 
-\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
-                                                  \fi \fi 
-l.479 	
-        <./fig5.png> <./fig6.png (PNG copy)>] [8 <./fig7.png (PNG copy)> <./fig
-8.png (PNG copy)> <./fig9.png (PNG copy)> <./fig10.png (PNG copy)> <./fig11.png
->] [9]
-<fig12.png, id=238, 526.96875pt x 395.22656pt>
+Overfull \hbox (8.76103pt too wide) in paragraph at lines 518--519
+ [][] 
+ []
+
+<fig44.png, id=242, 526.96875pt x 395.22656pt>
+File: fig44.png Graphic file (type png)
+<use fig44.png>
+Package pdftex.def Info: fig44.png  used on input line 522.
+(pdftex.def)             Requested size: 158.99242pt x 125.75139pt.
+
+Overfull \hbox (8.76103pt too wide) in paragraph at lines 522--525
+ [][] 
+ []
+
+[9 <./fig41.png (PNG copy)> <./fig43.png (PNG copy)> <./fig40.png (PNG copy)> <
+./fig42.png (PNG copy)> <./fig44.png (PNG copy)>] [10]
+<fig12.png, id=267, 526.96875pt x 395.22656pt>
 File: fig12.png Graphic file (type png)
 <use fig12.png>
-Package pdftex.def Info: fig12.png  used on input line 596.
+Package pdftex.def Info: fig12.png  used on input line 659.
 (pdftex.def)             Requested size: 227.62204pt x 170.71602pt.
 
-Overfull \hbox (9.10683pt too wide) in paragraph at lines 596--597
+Overfull \hbox (9.10683pt too wide) in paragraph at lines 659--660
  [][] 
  []
 
-<fig13.png, id=239, 526.96875pt x 395.22656pt>
+<fig13.png, id=268, 526.96875pt x 395.22656pt>
 File: fig13.png Graphic file (type png)
 <use fig13.png>
-Package pdftex.def Info: fig13.png  used on input line 600.
-(pdftex.def)             Requested size: 227.62204pt x 170.71602pt.
-
-Overfull \hbox (9.10683pt too wide) in paragraph at lines 600--601
- [][] 
- []
-
-[10pdfTeX warning (ext4): destination with the same identifier (name{equation.3
-.30}) has been already used, duplicate ignored
-
-\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
-                                                  \fi \fi 
-l.617 	
-        <./fig12.png (PNG copy)> <./fig13.png (PNG copy)>]
-<fig15.png, id=251, 526.96875pt x 395.22656pt>
-File: fig15.png Graphic file (type png)
-<use fig15.png>
-Package pdftex.def Info: fig15.png  used on input line 622.
-(pdftex.def)             Requested size: 227.62204pt x 170.71602pt.
-
-Overfull \hbox (9.10683pt too wide) in paragraph at lines 622--623
- [][] 
- []
-
-<fig14.png, id=252, 526.96875pt x 395.22656pt>
-File: fig14.png Graphic file (type png)
-<use fig14.png>
-Package pdftex.def Info: fig14.png  used on input line 626.
-(pdftex.def)             Requested size: 227.62204pt x 170.71602pt.
-
-Overfull \hbox (9.10683pt too wide) in paragraph at lines 626--627
- [][] 
- []
-
-<fig16.png, id=254, 526.96875pt x 395.22656pt>
-File: fig16.png Graphic file (type png)
-<use fig16.png>
-Package pdftex.def Info: fig16.png  used on input line 636.
-(pdftex.def)             Requested size: 273.14923pt x 204.86768pt.
-<fig17.png, id=257, 526.96875pt x 395.22656pt>
-File: fig17.png Graphic file (type png)
-<use fig17.png>
-Package pdftex.def Info: fig17.png  used on input line 652.
-(pdftex.def)             Requested size: 227.62204pt x 170.71602pt.
-
-Overfull \hbox (9.10683pt too wide) in paragraph at lines 652--653
- [][] 
- []
-
-<fig18.png, id=258, 526.96875pt x 395.22656pt>
-File: fig18.png Graphic file (type png)
-<use fig18.png>
-Package pdftex.def Info: fig18.png  used on input line 656.
-(pdftex.def)             Requested size: 227.62204pt x 170.71602pt.
-
-Overfull \hbox (9.10683pt too wide) in paragraph at lines 656--657
- [][] 
- []
-
-File: fig17.png Graphic file (type png)
-<use fig17.png>
-Package pdftex.def Info: fig17.png  used on input line 663.
+Package pdftex.def Info: fig13.png  used on input line 663.
 (pdftex.def)             Requested size: 227.62204pt x 170.71602pt.
 
 Overfull \hbox (9.10683pt too wide) in paragraph at lines 663--664
  [][] 
  []
 
-<fig19.png, id=259, 526.96875pt x 395.22656pt>
+[11pdfTeX warning (ext4): destination with the same identifier (name{equation.3
+.30}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.680 	
+        <./fig12.png (PNG copy)> <./fig13.png (PNG copy)>]
+<fig15.png, id=280, 526.96875pt x 395.22656pt>
+File: fig15.png Graphic file (type png)
+<use fig15.png>
+Package pdftex.def Info: fig15.png  used on input line 685.
+(pdftex.def)             Requested size: 227.62204pt x 170.71602pt.
+
+Overfull \hbox (9.10683pt too wide) in paragraph at lines 685--686
+ [][] 
+ []
+
+<fig14.png, id=281, 526.96875pt x 395.22656pt>
+File: fig14.png Graphic file (type png)
+<use fig14.png>
+Package pdftex.def Info: fig14.png  used on input line 689.
+(pdftex.def)             Requested size: 227.62204pt x 170.71602pt.
+
+Overfull \hbox (9.10683pt too wide) in paragraph at lines 689--690
+ [][] 
+ []
+
+<fig16.png, id=283, 526.96875pt x 395.22656pt>
+File: fig16.png Graphic file (type png)
+<use fig16.png>
+Package pdftex.def Info: fig16.png  used on input line 699.
+(pdftex.def)             Requested size: 273.14923pt x 204.86768pt.
+<fig17.png, id=286, 526.96875pt x 395.22656pt>
+File: fig17.png Graphic file (type png)
+<use fig17.png>
+Package pdftex.def Info: fig17.png  used on input line 715.
+(pdftex.def)             Requested size: 227.62204pt x 170.71602pt.
+
+Overfull \hbox (9.10683pt too wide) in paragraph at lines 715--716
+ [][] 
+ []
+
+<fig18.png, id=287, 526.96875pt x 395.22656pt>
+File: fig18.png Graphic file (type png)
+<use fig18.png>
+Package pdftex.def Info: fig18.png  used on input line 719.
+(pdftex.def)             Requested size: 227.62204pt x 170.71602pt.
+
+Overfull \hbox (9.10683pt too wide) in paragraph at lines 719--720
+ [][] 
+ []
+
+File: fig17.png Graphic file (type png)
+<use fig17.png>
+Package pdftex.def Info: fig17.png  used on input line 726.
+(pdftex.def)             Requested size: 227.62204pt x 170.71602pt.
+
+Overfull \hbox (9.10683pt too wide) in paragraph at lines 726--727
+ [][] 
+ []
+
+<fig19.png, id=288, 526.96875pt x 395.22656pt>
 File: fig19.png Graphic file (type png)
 <use fig19.png>
-Package pdftex.def Info: fig19.png  used on input line 667.
+Package pdftex.def Info: fig19.png  used on input line 730.
 (pdftex.def)             Requested size: 227.62204pt x 170.71602pt.
 
-Overfull \hbox (9.10683pt too wide) in paragraph at lines 667--668
+Overfull \hbox (9.10683pt too wide) in paragraph at lines 730--731
  [][] 
  []
 
-[11 <./fig15.png (PNG copy)> <./fig14.png (PNG copy)> <./fig16.png (PNG copy)>]
-<fig20.png, id=267, 818.05624pt x 524.96124pt>
+[12 <./fig15.png (PNG copy)> <./fig14.png (PNG copy)> <./fig16.png (PNG copy)>]
+<fig20.png, id=297, 818.05624pt x 524.96124pt>
 File: fig20.png Graphic file (type png)
 <use fig20.png>
-Package pdftex.def Info: fig20.png  used on input line 692.
+Package pdftex.def Info: fig20.png  used on input line 755.
 (pdftex.def)             Requested size: 273.14923pt x 175.28836pt.
-[12 <./fig17.png (PNG copy)> <./fig18.png (PNG copy)> <./fig19.png (PNG copy)>]
-<fig22.png, id=283, 526.96875pt x 395.22656pt>
+[13 <./fig17.png (PNG copy)> <./fig18.png (PNG copy)> <./fig19.png (PNG copy)>]
+<fig22.png, id=313, 526.96875pt x 395.22656pt>
 File: fig22.png Graphic file (type png)
 <use fig22.png>
-Package pdftex.def Info: fig22.png  used on input line 759.
+Package pdftex.def Info: fig22.png  used on input line 822.
 (pdftex.def)             Requested size: 227.62204pt x 170.71602pt.
 
-Overfull \hbox (9.10683pt too wide) in paragraph at lines 759--760
+Overfull \hbox (9.10683pt too wide) in paragraph at lines 822--823
  [][] 
  []
 
-<fig21.png, id=284, 526.96875pt x 395.22656pt>
+<fig21.png, id=314, 526.96875pt x 395.22656pt>
 File: fig21.png Graphic file (type png)
 <use fig21.png>
-Package pdftex.def Info: fig21.png  used on input line 763.
+Package pdftex.def Info: fig21.png  used on input line 826.
 (pdftex.def)             Requested size: 227.62204pt x 170.71602pt.
 
-Overfull \hbox (9.10683pt too wide) in paragraph at lines 763--764
+Overfull \hbox (9.10683pt too wide) in paragraph at lines 826--827
  [][] 
  []
 
-[13 <./fig20.png>]
-<fig23.png, id=294, 526.96875pt x 395.22656pt>
+[14 <./fig20.png>]
+<fig23.png, id=324, 526.96875pt x 395.22656pt>
 File: fig23.png Graphic file (type png)
 <use fig23.png>
-Package pdftex.def Info: fig23.png  used on input line 773.
+Package pdftex.def Info: fig23.png  used on input line 836.
 (pdftex.def)             Requested size: 227.62204pt x 170.71602pt.
 
-Overfull \hbox (9.10683pt too wide) in paragraph at lines 773--774
+Overfull \hbox (9.10683pt too wide) in paragraph at lines 836--837
  [][] 
  []
 
-<fig24.png, id=295, 526.96875pt x 395.22656pt>
+<fig24.png, id=325, 526.96875pt x 395.22656pt>
 File: fig24.png Graphic file (type png)
 <use fig24.png>
-Package pdftex.def Info: fig24.png  used on input line 777.
+Package pdftex.def Info: fig24.png  used on input line 840.
 (pdftex.def)             Requested size: 227.62204pt x 170.71602pt.
 
-Overfull \hbox (9.10683pt too wide) in paragraph at lines 777--778
+Overfull \hbox (9.10683pt too wide) in paragraph at lines 840--841
  [][] 
  []
 
-<fig25.png, id=298, 526.96875pt x 395.22656pt>
+<fig25.png, id=328, 526.96875pt x 395.22656pt>
 File: fig25.png Graphic file (type png)
 <use fig25.png>
-Package pdftex.def Info: fig25.png  used on input line 787.
+Package pdftex.def Info: fig25.png  used on input line 850.
 (pdftex.def)             Requested size: 273.14923pt x 204.86768pt.
-[14 <./fig22.png (PNG copy)> <./fig21.png (PNG copy)> <./fig23.png (PNG copy)> 
+[15 <./fig22.png (PNG copy)> <./fig21.png (PNG copy)> <./fig23.png (PNG copy)> 
 <./fig24.png (PNG copy)> <./fig25.png (PNG copy)>]
-<fig26.png, id=308, 526.96875pt x 395.22656pt>
+<fig26.png, id=337, 526.96875pt x 395.22656pt>
 File: fig26.png Graphic file (type png)
 <use fig26.png>
-Package pdftex.def Info: fig26.png  used on input line 798.
+Package pdftex.def Info: fig26.png  used on input line 861.
 (pdftex.def)             Requested size: 227.62204pt x 170.71602pt.
 
-Overfull \hbox (9.10683pt too wide) in paragraph at lines 798--799
+Overfull \hbox (9.10683pt too wide) in paragraph at lines 861--862
  [][] 
  []
 
-<fig27.png, id=309, 526.96875pt x 395.22656pt>
+<fig27.png, id=338, 526.96875pt x 395.22656pt>
 File: fig27.png Graphic file (type png)
 <use fig27.png>
-Package pdftex.def Info: fig27.png  used on input line 802.
+Package pdftex.def Info: fig27.png  used on input line 865.
 (pdftex.def)             Requested size: 227.62204pt x 170.71602pt.
 
-Overfull \hbox (9.10683pt too wide) in paragraph at lines 802--803
+Overfull \hbox (9.10683pt too wide) in paragraph at lines 865--866
  [][] 
  []
 
-<fig28.png, id=310, 526.96875pt x 395.22656pt>
+<fig28.png, id=339, 526.96875pt x 395.22656pt>
 File: fig28.png Graphic file (type png)
 <use fig28.png>
-Package pdftex.def Info: fig28.png  used on input line 812.
+Package pdftex.def Info: fig28.png  used on input line 875.
 (pdftex.def)             Requested size: 227.62204pt x 170.71602pt.
 
-Overfull \hbox (9.10683pt too wide) in paragraph at lines 812--813
+Overfull \hbox (9.10683pt too wide) in paragraph at lines 875--876
  [][] 
  []
 
-<fig29.png, id=311, 526.96875pt x 395.22656pt>
+<fig29.png, id=340, 526.96875pt x 395.22656pt>
 File: fig29.png Graphic file (type png)
 <use fig29.png>
-Package pdftex.def Info: fig29.png  used on input line 816.
+Package pdftex.def Info: fig29.png  used on input line 879.
 (pdftex.def)             Requested size: 227.62204pt x 170.71602pt.
 
-Overfull \hbox (9.10683pt too wide) in paragraph at lines 816--817
+Overfull \hbox (9.10683pt too wide) in paragraph at lines 879--880
  [][] 
  []
 
-[15 <./fig26.png (PNG copy)> <./fig27.png (PNG copy)> <./fig28.png (PNG copy)> 
-<./fig29.png (PNG copy)>] [16]
-<fig30.png, id=331, 526.96875pt x 395.22656pt>
+[16 <./fig26.png (PNG copy)> <./fig27.png (PNG copy)> <./fig28.png (PNG copy)> 
+<./fig29.png (PNG copy)>] [17]
+<fig30.png, id=361, 526.96875pt x 395.22656pt>
 File: fig30.png Graphic file (type png)
 <use fig30.png>
-Package pdftex.def Info: fig30.png  used on input line 956.
+Package pdftex.def Info: fig30.png  used on input line 1019.
 (pdftex.def)             Requested size: 227.62204pt x 170.71602pt.
 
-Overfull \hbox (9.10683pt too wide) in paragraph at lines 956--957
+Overfull \hbox (9.10683pt too wide) in paragraph at lines 1019--1020
  [][] 
  []
 
-<fig31.png, id=332, 526.96875pt x 395.22656pt>
+<fig31.png, id=362, 526.96875pt x 395.22656pt>
 File: fig31.png Graphic file (type png)
 <use fig31.png>
-Package pdftex.def Info: fig31.png  used on input line 960.
+Package pdftex.def Info: fig31.png  used on input line 1023.
 (pdftex.def)             Requested size: 227.62204pt x 170.71602pt.
 
-Overfull \hbox (9.10683pt too wide) in paragraph at lines 960--961
+Overfull \hbox (9.10683pt too wide) in paragraph at lines 1023--1024
  [][] 
  []
 
-<fig32.png, id=334, 526.96875pt x 395.22656pt>
+<fig32.png, id=363, 526.96875pt x 395.22656pt>
 File: fig32.png Graphic file (type png)
 <use fig32.png>
-Package pdftex.def Info: fig32.png  used on input line 972.
+Package pdftex.def Info: fig32.png  used on input line 1033.
 (pdftex.def)             Requested size: 170.71652pt x 128.03702pt.
-<fig33.png, id=335, 526.96875pt x 395.22656pt>
+<fig33.png, id=364, 526.96875pt x 395.22656pt>
 File: fig33.png Graphic file (type png)
 <use fig33.png>
-Package pdftex.def Info: fig33.png  used on input line 976.
+Package pdftex.def Info: fig33.png  used on input line 1037.
 (pdftex.def)             Requested size: 170.71652pt x 128.03702pt.
-<fig34.png, id=336, 526.96875pt x 395.22656pt>
+<fig34.png, id=365, 526.96875pt x 395.22656pt>
 File: fig34.png Graphic file (type png)
 <use fig34.png>
-Package pdftex.def Info: fig34.png  used on input line 980.
+Package pdftex.def Info: fig34.png  used on input line 1041.
 (pdftex.def)             Requested size: 170.71652pt x 128.03702pt.
-<fig35.png, id=337, 526.96875pt x 395.22656pt>
+<fig35.png, id=366, 526.96875pt x 395.22656pt>
 File: fig35.png Graphic file (type png)
 <use fig35.png>
-Package pdftex.def Info: fig35.png  used on input line 984.
+Package pdftex.def Info: fig35.png  used on input line 1045.
 (pdftex.def)             Requested size: 170.71652pt x 128.03702pt.
-[17 <./fig30.png (PNG copy)> <./fig31.png (PNG copy)> <./fig32.png (PNG copy)> 
+[18 <./fig30.png (PNG copy)> <./fig31.png (PNG copy)> <./fig32.png (PNG copy)> 
 <./fig33.png (PNG copy)> <./fig34.png (PNG copy)> <./fig35.png (PNG copy)>]
-<fig36.png, id=346, 526.96875pt x 395.22656pt>
+<fig36.png, id=376, 526.96875pt x 395.22656pt>
 File: fig36.png Graphic file (type png)
 <use fig36.png>
-Package pdftex.def Info: fig36.png  used on input line 994.
-(pdftex.def)             Requested size: 227.62204pt x 170.71602pt.
+Package pdftex.def Info: fig36.png  used on input line 1055.
+(pdftex.def)             Requested size: 284.52756pt x 213.40709pt.
 
-(./ME5401.bbl)
+[19 <./fig36.png (PNG copy)>] (./ME5401.bbl)
 \tf@thm=\write5
 \openout5 = `ME5401.thm'.
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1011.
- [18 <./fig36.png (PNG copy)>]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 1011.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1212.
+ [20]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 1212.
  (./ME5401.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1011.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1011.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1212.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1212.
 
 Package rerunfilecheck Info: File `ME5401.out' has not changed.
-(rerunfilecheck)             Checksum: A0E4EA07F724D2A7FA81C086CB0EBF63;1412.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1011.
+(rerunfilecheck)             Checksum: 71A335DDECCE4EBE1883D80BC3CFBD1E;1722.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1212.
  ) 
 Here is how much of TeX's memory you used:
- 10416 strings out of 481239
- 156081 string characters out of 5920376
- 436057 words of memory out of 5000000
- 25329 multiletter control sequences out of 15000+600000
+ 10464 strings out of 481239
+ 156657 string characters out of 5920376
+ 436484 words of memory out of 5000000
+ 25359 multiletter control sequences out of 15000+600000
  547075 words of font info for 78 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 41i,31n,42p,877b,493s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 41i,31n,42p,877b,423s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texmf/fonts/enc/dvips/cm-super/cm-super-ts1.enc}</usr/share/texli
 ve/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texlive/tex
 mf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texlive/texmf-dis
@@ -1038,10 +1121,10 @@ cmsy7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.
 pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></
 usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></u
 sr/share/texmf/fonts/type1/public/cm-super/sfrm1000.pfb>
-Output written on ME5401.pdf (19 pages, 1577848 bytes).
+Output written on ME5401.pdf (21 pages, 1797648 bytes).
 PDF statistics:
- 455 PDF objects out of 1000 (max. 8388607)
- 366 compressed objects within 4 object streams
- 107 named destinations out of 1000 (max. 500000)
- 346 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 501 PDF objects out of 1000 (max. 8388607)
+ 406 compressed objects within 5 object streams
+ 121 named destinations out of 1000 (max. 500000)
+ 398 words of extra memory for PDF output out of 10000 (max. 10000000)
 

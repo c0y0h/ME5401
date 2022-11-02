@@ -2,19 +2,23 @@
 \BOOKMARK [1][-]{section.2}{State feedback controller by pole placement method}{}% 2
 \BOOKMARK [2][-]{subsection.2.1}{Method description}{section.2}% 3
 \BOOKMARK [2][-]{subsection.2.2}{Simulation results and refinements}{section.2}% 4
-\BOOKMARK [2][-]{subsection.2.3}{Discussion}{section.2}% 5
-\BOOKMARK [1][-]{section.3}{Linear quadratic regulator controller}{}% 6
-\BOOKMARK [2][-]{subsection.3.1}{Method description}{section.3}% 7
-\BOOKMARK [3][-]{subsubsection.3.1.1}{Class method}{subsection.3.1}% 8
-\BOOKMARK [3][-]{subsubsection.3.1.2}{Discrete LQR method}{subsection.3.1}% 9
-\BOOKMARK [2][-]{subsection.3.2}{Simulation results}{section.3}% 10
-\BOOKMARK [2][-]{subsection.3.3}{Discussion}{section.3}% 11
-\BOOKMARK [1][-]{section.4}{Observer-based LQR control system}{}% 12
-\BOOKMARK [2][-]{subsection.4.1}{Method description}{section.4}% 13
-\BOOKMARK [2][-]{subsection.4.2}{Simulation results and discussion}{section.4}% 14
-\BOOKMARK [1][-]{section.5}{System decoupling control}{}% 15
-\BOOKMARK [2][-]{subsection.5.1}{Method description}{section.5}% 16
-\BOOKMARK [3][-]{subsubsection.5.1.1}{Decoupling by state feedback}{subsection.5.1}% 17
-\BOOKMARK [3][-]{subsubsection.5.1.2}{Decoupling by output feedback}{subsection.5.1}% 18
-\BOOKMARK [2][-]{subsection.5.2}{Simulation results and discussion}{section.5}% 19
-\BOOKMARK [1][-]{section.6}{Conclusion}{}% 20
+\BOOKMARK [2][-]{subsection.2.3}{Comparison with "place" function in MATLAB}{section.2}% 5
+\BOOKMARK [2][-]{subsection.2.4}{Discussion on pole positions}{section.2}% 6
+\BOOKMARK [1][-]{section.3}{Linear quadratic regulator controller}{}% 7
+\BOOKMARK [2][-]{subsection.3.1}{Method description}{section.3}% 8
+\BOOKMARK [3][-]{subsubsection.3.1.1}{Class method}{subsection.3.1}% 9
+\BOOKMARK [3][-]{subsubsection.3.1.2}{Discrete LQR method}{subsection.3.1}% 10
+\BOOKMARK [2][-]{subsection.3.2}{Simulation results}{section.3}% 11
+\BOOKMARK [2][-]{subsection.3.3}{Discussion}{section.3}% 12
+\BOOKMARK [1][-]{section.4}{Observer-based LQR control system}{}% 13
+\BOOKMARK [2][-]{subsection.4.1}{Method description}{section.4}% 14
+\BOOKMARK [2][-]{subsection.4.2}{Simulation results and discussion}{section.4}% 15
+\BOOKMARK [1][-]{section.5}{System decoupling control}{}% 16
+\BOOKMARK [2][-]{subsection.5.1}{Method description}{section.5}% 17
+\BOOKMARK [3][-]{subsubsection.5.1.1}{Decoupling by state feedback}{subsection.5.1}% 18
+\BOOKMARK [3][-]{subsubsection.5.1.2}{Decoupling by output feedback}{subsection.5.1}% 19
+\BOOKMARK [2][-]{subsection.5.2}{Simulation results and discussion}{section.5}% 20
+\BOOKMARK [1][-]{section.6}{Servo control}{}% 21
+\BOOKMARK [2][-]{subsection.6.1}{Method description}{section.6}% 22
+\BOOKMARK [2][-]{subsection.6.2}{Simulation results and discussion}{section.6}% 23
+\BOOKMARK [1][-]{section.7}{Conclusion}{}% 24
