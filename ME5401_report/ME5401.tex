@@ -1186,17 +1186,64 @@
 	0.7398 &0.7502  &0.3988 
 	\end{pmatrix}^{T}$ and a step disturbance for the two inputs $w=\begin{pmatrix}
 	-1 &1 
-	\end{pmatrix}^{T}$ takes effect from $t_{d}=10s$.
+	\end{pmatrix}^{T}$ takes effect from $t_{d}=10s$. The system model is estabilished in Simulink (Fig.~\ref{fig24}), where an observer is used to estimate state variables. First check the set point tracking performance without disturbance. The response signals and tracking errors are illustrated in Fig.~\ref{fig25}, where the output become stable and tracking error converges to zero in 6s with small overshoot. The control cost is also monitored and plot in Fig.~\ref{fig26}. We can see the first peak is large but the two control cost both come to zero after the system is stabilized.
 	
 	
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=12cm]{fig45.png}
+		\caption{Servo control system}
+		\label{fig24}
+	\end{figure}
+
+	\begin{figure}[H]
+		\centering
+		\begin{minipage}[t]{0.48\textwidth}
+			\centering
+			\includegraphics[width=8cm]{fig46.png}
+		\end{minipage}
+		\begin{minipage}[t]{0.48\textwidth}
+			\centering
+			\includegraphics[width=8cm]{fig47.png}
+		\end{minipage}
+		\caption{System tracking performance}
+		\label{fig25}
+	\end{figure}
+	
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=8cm]{fig48.png}
+		\caption{Control cost}
+		\label{fig26}
+	\end{figure}
+	
+	Then we add the step disturbance $w=\begin{pmatrix}
+	-1 &1 
+	\end{pmatrix}^{T}$ at the two input channels at 10s. The output signal along with tracking error and control signal are given in Fig.~\ref{fig27} and Fig.~\ref{fig28} respectively. The simulation results show that both tracking error and control signal recover to zero after the system is stabilized by the servo controller.
+	
+	\begin{figure}[H]
+		\centering
+		\begin{minipage}[t]{0.48\textwidth}
+			\centering
+			\includegraphics[width=8cm]{fig49.png}
+		\end{minipage}
+		\begin{minipage}[t]{0.48\textwidth}
+			\centering
+			\includegraphics[width=8cm]{fig50.png}
+		\end{minipage}
+		\caption{System tracking performance after disturbance}
+		\label{fig27}
+	\end{figure}
+	
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=8cm]{fig51.png}
+		\caption{Control cost after disturbance}
+		\label{fig28}
+	\end{figure}
 	
 	
-	
-	
-	
-	
-	
-	
+	\section{title}
 	
 	
 	

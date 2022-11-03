@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2021.12.29)  2 NOV 2022 17:01
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2021.12.29)  3 NOV 2022 19:39
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1076,26 +1076,84 @@ File: fig36.png Graphic file (type png)
 Package pdftex.def Info: fig36.png  used on input line 1055.
 (pdftex.def)             Requested size: 284.52756pt x 213.40709pt.
 
-[19 <./fig36.png (PNG copy)>] (./ME5401.bbl)
+[19 <./fig36.png (PNG copy)>]
+<fig45.png, id=390, 1755.55875pt x 762.85pt>
+File: fig45.png Graphic file (type png)
+<use fig45.png>
+Package pdftex.def Info: fig45.png  used on input line 1194.
+(pdftex.def)             Requested size: 341.43306pt x 148.3652pt.
+<fig46.png, id=391, 526.96875pt x 395.22656pt>
+File: fig46.png Graphic file (type png)
+<use fig46.png>
+Package pdftex.def Info: fig46.png  used on input line 1203.
+(pdftex.def)             Requested size: 227.62204pt x 170.71602pt.
+
+Overfull \hbox (9.10683pt too wide) in paragraph at lines 1203--1204
+ [][] 
+ []
+
+<fig47.png, id=392, 526.96875pt x 395.22656pt>
+File: fig47.png Graphic file (type png)
+<use fig47.png>
+Package pdftex.def Info: fig47.png  used on input line 1207.
+(pdftex.def)             Requested size: 227.62204pt x 170.71602pt.
+
+Overfull \hbox (9.10683pt too wide) in paragraph at lines 1207--1208
+ [][] 
+ []
+
+[20 <./fig45.png>]
+<fig48.png, id=404, 526.96875pt x 395.22656pt>
+File: fig48.png Graphic file (type png)
+<use fig48.png>
+Package pdftex.def Info: fig48.png  used on input line 1215.
+(pdftex.def)             Requested size: 227.62204pt x 170.71602pt.
+<fig49.png, id=407, 526.96875pt x 395.22656pt>
+File: fig49.png Graphic file (type png)
+<use fig49.png>
+Package pdftex.def Info: fig49.png  used on input line 1228.
+(pdftex.def)             Requested size: 227.62204pt x 170.71602pt.
+
+Overfull \hbox (9.10683pt too wide) in paragraph at lines 1228--1229
+ [][] 
+ []
+
+<fig50.png, id=408, 526.96875pt x 395.22656pt>
+File: fig50.png Graphic file (type png)
+<use fig50.png>
+Package pdftex.def Info: fig50.png  used on input line 1232.
+(pdftex.def)             Requested size: 227.62204pt x 170.71602pt.
+
+Overfull \hbox (9.10683pt too wide) in paragraph at lines 1232--1233
+ [][] 
+ []
+
+<fig51.png, id=409, 526.96875pt x 395.22656pt>
+File: fig51.png Graphic file (type png)
+<use fig51.png>
+Package pdftex.def Info: fig51.png  used on input line 1240.
+(pdftex.def)             Requested size: 227.62204pt x 170.71602pt.
+[21 <./fig46.png (PNG copy)> <./fig47.png (PNG copy)> <./fig48.png (PNG copy)> 
+<./fig49.png (PNG copy)> <./fig50.png (PNG copy)>] (./ME5401.bbl)
 \tf@thm=\write5
 \openout5 = `ME5401.thm'.
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1212.
- [20]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 1212.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1259.
+ [22 <./fig51.png (PNG copy)>]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 1259.
  (./ME5401.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1212.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1212.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1259.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1259.
 
 Package rerunfilecheck Info: File `ME5401.out' has not changed.
 (rerunfilecheck)             Checksum: 71A335DDECCE4EBE1883D80BC3CFBD1E;1722.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1212.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1259.
  ) 
 Here is how much of TeX's memory you used:
- 10464 strings out of 481239
- 156657 string characters out of 5920376
- 436484 words of memory out of 5000000
- 25359 multiletter control sequences out of 15000+600000
+ 10518 strings out of 481239
+ 157302 string characters out of 5920376
+ 436788 words of memory out of 5000000
+ 25399 multiletter control sequences out of 15000+600000
  547075 words of font info for 78 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  41i,31n,42p,877b,423s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -1121,10 +1179,10 @@ cmsy7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.
 pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></
 usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></u
 sr/share/texmf/fonts/type1/public/cm-super/sfrm1000.pfb>
-Output written on ME5401.pdf (21 pages, 1797648 bytes).
+Output written on ME5401.pdf (23 pages, 2056193 bytes).
 PDF statistics:
- 501 PDF objects out of 1000 (max. 8388607)
- 406 compressed objects within 5 object streams
- 121 named destinations out of 1000 (max. 500000)
- 398 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 528 PDF objects out of 1000 (max. 8388607)
+ 423 compressed objects within 5 object streams
+ 128 named destinations out of 1000 (max. 500000)
+ 433 words of extra memory for PDF output out of 10000 (max. 10000000)
 

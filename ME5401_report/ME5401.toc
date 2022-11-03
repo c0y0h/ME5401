@@ -21,4 +21,4 @@
 \contentsline {section}{\numberline {6}Servo control}{19}{section.6}%
 \contentsline {subsection}{\numberline {6.1}Method description}{19}{subsection.6.1}%
 \contentsline {subsection}{\numberline {6.2}Simulation results and discussion}{20}{subsection.6.2}%
-\contentsline {section}{\numberline {7}Conclusion}{20}{section.7}%
+\contentsline {section}{\numberline {7}Conclusion}{22}{section.7}%

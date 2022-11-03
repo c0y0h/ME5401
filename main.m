@@ -22,6 +22,74 @@ u3 = [ones(size(t,2),1),ones(size(t,2),1)];
 
 [K11,K1] = pole_placement(A, B);
 
+
+% check for K11
+% C2=[1 0 0 0 0 0; 0 1 0 0 0 0];
+% D2=[0 0; 0 0];
+% F=inv(C2/(B*K11-A)*B);
+% ss_q2 = ss(A-B*K11, B*F, C2, D2);
+ss_q1 = ss(A-B*K11, B, C, D);
+
+%   u=[1 0]
+[y,t,x]=lsim(ss_q1,u1,t,zeros(6,1));
+% [y,t,x]=lsim(ss_q2,u0,t,x0);
+q1_info = stepinfo(y,t);
+
+figure(3);
+subplot(3,1,1);
+plot(t,y(:,1));
+title({'Output curve with u=[1 0]', ...
+    ['overshoot: ', num2str(q1_info(1).Overshoot),'%'], ...
+    ['2% setting time: ', num2str(q1_info(1).SettlingTime),'s' ]});
+xlabel('Time (sec)');
+ylabel('Cart Position (m)');
+
+subplot(3,1,2);
+plot(t,y(:,2));
+title({'Output curve with u=[1 0]', ...
+    ['overshoot: ', num2str(q1_info(2).Overshoot),'%'], ...
+    ['2% setting time: ', num2str(q1_info(2).SettlingTime),'s' ]});
+xlabel('Time (sec)');
+ylabel('Handle Angle (rad)');
+
+subplot(3,1,3);
+plot(t,y(:,3));
+title({'Output curve with u=[1 0]', ...
+    ['overshoot: ', num2str(q1_info(3).Overshoot),'%'], ...
+    ['2% setting time: ', num2str(q1_info(3).SettlingTime),'s' ]});
+xlabel('Time (sec)');
+ylabel('Bike Angle (rad)');
+
+%   u=[0 1]
+[y,t,x]=lsim(ss_q1,u2,t,zeros(6,1));
+% [y,t,x]=lsim(ss_q2,u0,t,x0);
+q1_info = stepinfo(y,t);
+
+figure(4);
+subplot(3,1,1);
+plot(t,y(:,1));
+title({'Output curve with u=[0 1]', ...
+    ['overshoot: ', num2str(q1_info(1).Overshoot),'%'], ...
+    ['2% setting time: ', num2str(q1_info(1).SettlingTime),'s' ]});
+xlabel('Time (sec)');
+ylabel('Cart Position (m)');
+
+subplot(3,1,2);
+plot(t,y(:,2));
+title({'Output curve with u=[0 1]', ...
+    ['overshoot: ', num2str(q1_info(2).Overshoot),'%'], ...
+    ['2% setting time: ', num2str(q1_info(2).SettlingTime),'s' ]});
+xlabel('Time (sec)');
+ylabel('Handle Angle (rad)');
+
+subplot(3,1,3);
+plot(t,y(:,3));
+title({'Output curve with u=[0 1]', ...
+    ['overshoot: ', num2str(q1_info(3).Overshoot),'%'], ...
+    ['2% setting time: ', num2str(q1_info(3).SettlingTime),'s' ]});
+xlabel('Time (sec)');
+ylabel('Bike Angle (rad)');
+
 %%
 % check for K1
 %   u=[1 0]
@@ -84,73 +152,6 @@ xlabel('Time (sec)');
 ylabel('Bike Angle (rad)');
 
 %%
-% check for K11
-% C2=[1 0 0 0 0 0; 0 1 0 0 0 0];
-% D2=[0 0; 0 0];
-% F=inv(C2/(B*K11-A)*B);
-% ss_q2 = ss(A-B*K11, B*F, C2, D2);
-ss_q1 = ss(A-B*K11, B, C, D);
-
-%   u=[1 0]
-[y,t,x]=lsim(ss_q1,u1,t,zeros(6,1));
-% [y,t,x]=lsim(ss_q2,u0,t,x0);
-q1_info = stepinfo(y,t);
-
-figure(3);
-subplot(3,1,1);
-plot(t,y(:,1));
-title({'Output curve with u=[0 1]', ...
-    ['overshoot: ', num2str(q1_info(1).Overshoot),'%'], ...
-    ['2% setting time: ', num2str(q1_info(1).SettlingTime),'s' ]});
-xlabel('Time (sec)');
-ylabel('Cart Position (m)');
-
-subplot(3,1,2);
-plot(t,y(:,2));
-title({'Output curve with u=[0 1]', ...
-    ['overshoot: ', num2str(q1_info(2).Overshoot),'%'], ...
-    ['2% setting time: ', num2str(q1_info(2).SettlingTime),'s' ]});
-xlabel('Time (sec)');
-ylabel('Handle Angle (rad)');
-
-subplot(3,1,3);
-plot(t,y(:,3));
-title({'Output curve with u=[0 1]', ...
-    ['overshoot: ', num2str(q1_info(3).Overshoot),'%'], ...
-    ['2% setting time: ', num2str(q1_info(3).SettlingTime),'s' ]});
-xlabel('Time (sec)');
-ylabel('Bike Angle (rad)');
-
-%   u=[0 1]
-[y,t,x]=lsim(ss_q1,u2,t,zeros(6,1));
-% [y,t,x]=lsim(ss_q2,u0,t,x0);
-q1_info = stepinfo(y,t);
-
-figure(4);
-subplot(3,1,1);
-plot(t,y(:,1));
-title({'Output curve with u=[0 1]', ...
-    ['overshoot: ', num2str(q1_info(1).Overshoot),'%'], ...
-    ['2% setting time: ', num2str(q1_info(1).SettlingTime),'s' ]});
-xlabel('Time (sec)');
-ylabel('Cart Position (m)');
-
-subplot(3,1,2);
-plot(t,y(:,2));
-title({'Output curve with u=[0 1]', ...
-    ['overshoot: ', num2str(q1_info(2).Overshoot),'%'], ...
-    ['2% setting time: ', num2str(q1_info(2).SettlingTime),'s' ]});
-xlabel('Time (sec)');
-ylabel('Handle Angle (rad)');
-
-subplot(3,1,3);
-plot(t,y(:,3));
-title({'Output curve with u=[0 1]', ...
-    ['overshoot: ', num2str(q1_info(3).Overshoot),'%'], ...
-    ['2% setting time: ', num2str(q1_info(3).SettlingTime),'s' ]});
-xlabel('Time (sec)');
-ylabel('Bike Angle (rad)');
-
 %   task 1 check
 % 6 state responses to x0 with zero inputs
 [y,t,x]=lsim(ss_q1,u0,t,x0);
@@ -516,7 +517,7 @@ sgtitle('Output response with input u=[0 1]');
 %%   task 4 check
 %   check if external stable (zeros initial states / x0)
 % x0
-% u1=[1 0]
+% u1=[1 0]#
 [y, t, x] = lsim(ss_q4, u1, t, x0);
 
 figure(16);
@@ -595,9 +596,9 @@ for i=1:6
 end
 sgtitle('Response of x with input u=[1 0] and initial state x0')
 %%
-% 这里状态应该是看不到的，做完第三题再回头看
+% 这里状�?�应该是看不到的，做完第三题再回头看
 % ss_q4 = ss(A-B*K4, B*F4, C2, D2);
-% 用 state observer 去看
+% �? state observer 去看
 
 damp = 0.8;
 wn=2;
@@ -652,23 +653,51 @@ for i = 1:6
     ylabel(['x',num2str(i)]);
 end
 % legend(legend_str);
-sgtitle('Comparison between x and x_{est}');
+sgtitle('Response of x with input u=[1 0] and initial state x0');
 
 
 
 %%
 % 不知道输出反馈能否使内部稳定
 % %   2. output feedback
-[sys1,sys2,Kd]=decoupler_of(A,B,C2);
-
+% [sys1,sys2,Kd]=decoupler_of(A,B,C2);
 
 
 %% Q5
+% Assume that you only have three cheap sensors to measure the output. Design a controller such 
+% that the plant (vehicle) can operate around the set point as close as possible at steady state even 
+% when step disturbances are present at the plant input. Plot out both the control and output signals.
+% In your simulation, you may assume the step disturbance for the two inputs, w= [?1, 1]T
+% takes effect from time td = 10s afterwards.
 
+ysp=-0.1*C/A*B*[-0.5+(3-1)/20; 0.1+(1-1)/(3+5+10)];
+% ysp=[1;3;5];
+[K5,L5]=servo(A,B,C);
+K51=K5(:,1:6);
+K52=K5(:,7:9);
+%%
+% run simulink
+% plot
+figure;
+curve=plot(yout.time(300:end,1),yout.signals(1).values(300:end,1),yout.time(300:end,1),yout.signals(1).values(300:end,2),yout.time(300:end,1),yout.signals(1).values(300:end,3));
+grid on; 
+legend('Cart position','Handle angle','Bike angle');
+xlabel('Time (sec)'), ylabel('Output Amplitude'); 
+title('Output Signal');
 
-
-
-
+figure;
+curve=plot(yout.time(300:end,1),yout.signals(1).values(300:end,1)-ysp(1),yout.time(300:end,1),yout.signals(1).values(300:end,2)-ysp(2),yout.time(300:end,1),yout.signals(1).values(300:end,3)-ysp(3));
+grid on; 
+legend('Cart position error','Handle angle error','Bike angle error');
+xlabel('Time (sec)'), ylabel('Error'); 
+title('Tracking Error');
+%%
+figure;
+curve=plot(controlSignal.time(300:end,1),controlSignal.signals(1).values(300:end,1),controlSignal.time(300:end,1),controlSignal.signals(1).values(300:end,2));
+grid on; 
+legend('Control channel 1','Control channel 1');
+xlabel('Time (sec)'), ylabel('Amplitude'); 
+title('Control cost');
 
 
 
