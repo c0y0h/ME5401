@@ -46,7 +46,45 @@
 \graphicspath{{figure/}}                                 %% Path of Figures
 \usepackage[a4paper]{geometry}                           %% Paper size
 \geometry{left=2.5cm,right=2.5cm,top=2.5cm,bottom=2.5cm} %% Margin
-\linespread{1.2}                                         %% Line Spread
+\linespread{1.2}      
+
+% matlab code package
+\usepackage{appendix}
+\usepackage{listings}%插入代码
+\usepackage{color}
+\lstset{%代码格式的配置
+	extendedchars=false,            % Shutdown no-ASCII compatible
+	language=Matlab,                % ！！！选择代码的语言
+	basicstyle=\footnotesize\tt,    % the size of the fonts that are used for the code
+	tabsize=3,                            % sets default tabsize to 3 spaces
+	numbers=left,                   % where to put the line-numbers
+	numberstyle=\tiny,              % the size of the fonts that are used for the line-numbers
+	stepnumber=1,                   % the step between two line-numbers. If it's 1 each line
+	% will be numbered
+	numbersep=5pt,                  % how far the line-numbers are from the code   %
+	keywordstyle=\color[rgb]{0,0,1},                % keywords
+	commentstyle=\color[rgb]{0.133,0.545,0.133},    % comments
+	stringstyle=\color[rgb]{0.627,0.126,0.941},      % strings
+	backgroundcolor=\color{white}, % choose the background color. You must add \usepackage{color}
+	showspaces=false,               % show spaces adding particular underscores
+	showstringspaces=false,         % underline spaces within strings
+	showtabs=false,                 % show tabs within strings adding particular underscores
+	frame=single,                   % adds a frame around the code
+	captionpos=b,                   % sets the caption-position to bottom
+	breaklines=true,                % sets automatic line breaking
+	breakatwhitespace=false,        % sets if automatic breaks should only happen at whitespace
+	title=\lstname,                 % show the filename of files included with \lstinputlisting;
+	% also try caption instead of title
+	mathescape=true,escapechar=?    % escape to latex with ?..?
+	escapeinside={\%*}{*)},         % if you want to add a comment within your code
+	%columns=fixed,                  % nice spacing
+	%morestring=[m]',                % strings
+	%morekeywords={%,...},%          % if you want to add more keywords to the set
+	%    break,case,catch,continue,elseif,else,end,for,function,global,%
+	%    if,otherwise,persistent,return,switch,try,while,...},%
+}
+
+                                   %% Line Spread
 %MS%%%%%%%%%%%%%%%%%%%%%%%%%%%% End Format %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %MS%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -1322,8 +1360,54 @@
 	%MS++++++++++++++++++++++++++++++ Reference ++++++++++++++++++
 	%% 参考文献请看下一节详细介绍。
 	
+	
 	\bibliographystyle{IEEEtran}
 	
 	\bibliography{ref_5401}{}
+	
+	\newpage
+	
+	\begin{appendices}
+		
+		\section{Appendix}
+		
+		\textbf{\textcolor[rgb]{0.98,0.00,0.00}{main\_final.m}}
+		\lstinputlisting[language=Matlab]{main_final.m}
+		
+		\textbf{\textcolor[rgb]{0.98,0.00,0.00}{load\_parameter.m}}
+		\lstinputlisting[language=Matlab]{load_parameter.m}
+		
+		\textbf{\textcolor[rgb]{0.98,0.00,0.00}{pole\_placement.m}}
+		\lstinputlisting[language=Matlab]{pole_placement.m}
+		
+		\textbf{\textcolor[rgb]{0.98,0.00,0.00}{lqr\_control.m}}
+		\lstinputlisting[language=Matlab]{lqr_control.m}
+		
+		\textbf{\textcolor[rgb]{0.98,0.00,0.00}{dlqr\_control.m}}
+		\lstinputlisting[language=Matlab]{dlqr_control.m}
+		
+		\textbf{\textcolor[rgb]{0.98,0.00,0.00}{state\_observer.m}}
+		\lstinputlisting[language=Matlab]{state_observer.m}
+		
+		\textbf{\textcolor[rgb]{0.98,0.00,0.00}{decoupler\_sf.m}}
+		\lstinputlisting[language=Matlab]{decoupler_sf.m}
+		
+		\textbf{\textcolor[rgb]{0.98,0.00,0.00}{servo.m}}
+		\lstinputlisting[language=Matlab]{servo.m}
+		
+		\textbf{\textcolor[rgb]{0.98,0.00,0.00}{global\_check.m}}
+		\lstinputlisting[language=Matlab]{global_check.m}
+		
+		\textbf{\textcolor[rgb]{0.98,0.00,0.00}{task12\_check.m}}
+		\lstinputlisting[language=Matlab]{task12_check.m}
+		
+		\textbf{\textcolor[rgb]{0.98,0.00,0.00}{task3\_check.m}}
+		\lstinputlisting[language=Matlab]{task3_check.m}
+		
+		\textbf{\textcolor[rgb]{0.98,0.00,0.00}{task4\_check.m}}
+		\lstinputlisting[language=Matlab]{task4_check.m}
+		
+		
+	\end{appendices}
 	
 \end{document}
