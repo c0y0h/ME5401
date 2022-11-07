@@ -21,4 +21,8 @@
 \contentsline {section}{\numberline {6}Servo control}{19}{section.6}%
 \contentsline {subsection}{\numberline {6.1}Method description}{19}{subsection.6.1}%
 \contentsline {subsection}{\numberline {6.2}Simulation results and discussion}{20}{subsection.6.2}%
-\contentsline {section}{\numberline {7}Conclusion}{22}{section.7}%
+\contentsline {section}{\numberline {7}Arbitrary constant set point tracking}{22}{section.7}%
+\contentsline {subsection}{\numberline {7.1}Method description}{22}{subsection.7.1}%
+\contentsline {subsection}{\numberline {7.2}Simulation results}{22}{subsection.7.2}%
+\contentsline {subsection}{\numberline {7.3}Discussion and explaination}{22}{subsection.7.3}%
+\contentsline {section}{\numberline {8}Conclusion}{23}{section.8}%

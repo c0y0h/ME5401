@@ -56,7 +56,7 @@
 %MS%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %MS++++++++++++++++++++++++++++++ Title +++++++++++++++++++
-\title{Assignment for EE5101/ME5401 Linear Systems}
+\title{Study on controller design for self-balancing vehicles}
 \author{\textup{Yihui Chen}}
 \begin{document}
 	\begin{titlepage}
@@ -80,7 +80,7 @@
 		\begin{minipage}{0.4\textwidth}
 			\begin{flushright} \large
 				\emph{Supervisor:} \\
-				\textup{Prof Yang}
+				\textup{Xiang Cheng}
 			\end{flushright}
 		\end{minipage}\\[3cm]
 		\makeatother
@@ -94,22 +94,15 @@
 
 	%MS+++++++++++++++++++++ Abstract +++++++++++++++++++++++++
 	\begin{abstract}
-		
-	This is abstract
+
+	Self-balancing two-wheeled vehicles have drawn great interest for their high safety and low energy cost. State space models can be established according to the structure for controller design. In this report, state feedback controllers are designed to stabilize the system by pole placement and LQR method. Performance of different methods are compared by simulation results. To monitor state variables, an observer is also designed followed by a discussion on effects of observer poles. Then we investigate the state feedback decoupling controller on a 2-input-2-output system. Finally a servo controller is designed to track the given reference signal regardless of disturbance. The multivariable integral controller for this system is proved to only achieve minimum steady-state error but unable to eliminate it.
 	
-	Plant description
-	Control and observer design method description
-	Design details
-	Simulation results
-	Possible comparison
-	Comments and discussion
-	Modification and refinements
 	
 	\end{abstract}
 	
 	\vspace{1ex}
 	{\noindent\small{\bf Keywords:}
-		Keywords1; Keywords2;...}
+		Self-balancing vehicles; Pole placement; LQR control; Observer; Decoupling; Integral controller}
 	
 	\newpage
 	
@@ -119,7 +112,8 @@
 	%MS++++++++++++++++++++++++++++++ Main body ++++++++++++++++++++
 	\section{Introduction}
 	
-	Combining the high safty of car and low cost of motor, self-sustaining two-wheeled vehicle (Fig.~\ref{fig1}) has drawn research interest in universities. Though most of study are still in experimental stage, different control methods have been tested on this mortorcycle-like vehicle and some exprimental results have been released online. 
+	\hspace{1.0em}
+	Combining the high safety of car and low cost of motor, self-sustaining two-wheeled vehicle (Fig.~\ref{fig1}) has drawn research interest in universities. Though most of study are still in experimental stage, different control methods have been tested on this mortorcycle-like vehicle and some exprimental results have been released online. 
 	
 	\begin{figure}[htbp]
 		\centering
@@ -220,7 +214,7 @@
 		\item The 2\% settling time should be less than 5 seconds.
 	\end{itemize}
 
-	The rest of the report is structured in the following manner: In section 2 a state feedback controller is designed using pole placement methods, followed by a discussion on effects of different pole choices. Section 3 concludes a Linear Quadratic Regulator controller design as well as the techique on choosing the weighting matrixes $Q$ and $R$. Section 4 introduces a state observer based on the former LQR control system and its performance is evaluated by monitoring the state estimation error. Section 5 describes a decoupling controller for a 2-input-2-output system. Section 6 designes a controller enabling the output of plant to track the reference signal regardless of step disturbances in input channel. Section 7 tries the integral control method to maintain outputs at a constatnt set point with zero steady-state error. Section 8 concludes the work.
+	The rest of the report is structured in the following manner: In section 2 a state feedback controller is designed using pole placement methods, followed by a discussion on effects of different pole choices. Section 3 concludes a Linear Quadratic Regulator controller design as well as the techique on choosing the weighting matrixes $Q$ and $R$. Section 4 introduces a state observer based on the former LQR control system and its performance is evaluated by monitoring the state estimation error. Section 5 describes a decoupling controller for a 2-input-2-output system. Section 6 designes a controller enabling the output of plant to track the reference signal regardless of step disturbances in input channel. Section 7 tries to track an arbitrary constatnt set point using the multivariable integral control and PID controller. Section 8 concludes the work.
 	
 	\section{State feedback controller by pole placement method}
 	
@@ -1243,12 +1237,88 @@
 	\end{figure}
 	
 	
-	\section{title}
+	\section{Arbitrary constant set point tracking}
 	
+	\subsection{Method description}
+	
+	\hspace{1.0em}
+	In this section, we try to change the operating set point $y_{sp}$ and design controllers to track the signal. The newly chosen reference signals are $y_{sp1}=\begin{pmatrix}
+	3 &1  &5 
+	\end{pmatrix}^{T}$, $y_{sp2}=\begin{pmatrix}
+	3 &2  &5 
+	\end{pmatrix}^{T}$ and $y_{sp3}=\begin{pmatrix}
+	30 &20  &50 
+	\end{pmatrix}^{T}$. We use the former multivariable integral control method in last section.
+	
+	\subsection{Simulation results}
+	
+	\hspace{1.0em}
+	First for the multivariable integral control method, the tracking peformance for the three different reference signals is shown in Fig.~\ref{fig29}. Though the system can be stabilized regardless of step disturbance, zero steady-state error cannot be ensured especially for the last two cases.
+	
+	\begin{figure}[H]
+		\centering
+		\begin{minipage}[t]{0.3\textwidth}
+			\centering
+			\includegraphics[width=5cm]{fig52.png}
+		\end{minipage}
+		\begin{minipage}[t]{0.3\textwidth}
+			\centering
+			\includegraphics[width=5cm]{fig54.png}
+		\end{minipage}
+		\begin{minipage}[t]{0.3\textwidth}
+			\centering
+			\includegraphics[width=5cm]{fig56.png}
+		\end{minipage}
+		\begin{minipage}[t]{0.3\textwidth}
+			\centering
+			\includegraphics[width=5cm]{fig53.png}
+		\end{minipage}
+		\begin{minipage}[t]{0.3\textwidth}
+			\centering
+			\includegraphics[width=5cm]{fig55.png}
+		\end{minipage}
+		\begin{minipage}[t]{0.3\textwidth}
+			\centering
+			\includegraphics[width=5cm]{fig57.png}
+		\end{minipage}
+		\caption{Arbitrary constant tracking performance using multivariable integral controller}
+		\label{fig29}
+	\end{figure}
+	
+	\subsection{Discussion and explaination}
+	
+	\hspace{1.0em}
+	It may be strange that though we use integral controller to track reference signal, the steady-state error increases when the set point is slightly changed. To explain the reaseon, we need to look back on Eq.~\ref{eq45}, where the augmented closed-loop system is controllable only if $rank\begin{pmatrix}
+	A &B \\ 
+	C &0 
+	\end{pmatrix}=n+m$, where $n$ is the dimension of state variables while $m$ is that of both input and output channels. However, our plant here is $2\times 3$ with 2 inputs and 3 outputs. Also check the rank of the controllability matrix, we can find the result is 8 and it is not full row rank. As a result, when using the eigenvalue-based LQR method, we check the $\Gamma$ matrix in Eq.~\ref{eq21} and find its rank is 17 but not 18, which leads to only 16 stable eigenvectors, i.e.
+	
+	\begin{equation}
+	rank(U_{9\times 8})=rank(V_{9\times 8})=8
+	\label{eq48}
+	\end{equation}
+	
+	where $U=\begin{pmatrix}
+		\mu _{1} &\cdots   & \mu _{8}
+	\end{pmatrix}$ and $
+	V=\begin{pmatrix}
+		v_{1} &\cdots   & v_{8}
+	\end{pmatrix}$. Therefore, we cannot let $P=UV^{-1}$ as in Eq.~\ref{eq22} since $V$ is singular and not invertible. It can be easily overlooked because the code written here as "$P=U/V$" in matlab actually do the Overconstrained (Left) Pseudo-Inverse automatically, i.e.
+	
+	\begin{equation}
+	P=U(V^{T}V)^{-1}V^{T}
+	\label{eq49}
+	\end{equation}
+	
+	Left pseudo-inverse can be considered as "best approximation" by minimizing the least squares error, but not the exact solution. Similarly, if use the simple discrete LQR method in Section 3, we can find the matrix $P$ can not converge. Therefore, the multivariable integral controller can not achieve a zero steady-state error. Instead it can only minimize the steady-state error in total and make the system stable regardless of step disturbance.
 	
 	
 	\section{Conclusion}
-	\section*{Acknowledgments}
+	
+	\hspace{1.0em}
+	This report test different controllers on the self-balancing vehicles and evalute the simulation results. In the last two sections, we combine LQR state feedback with a state observer to track the reference signal and achieve system stability even with a step disturbance. However, zero steady-state error cannot be ensured for arbitrary constant set point by the multivariable integral contorller, and it needs further refinements in the future.
+	
+%	\section*{Acknowledgments}
 	%MS++++++++++++++++++++++++++++++ Reference ++++++++++++++++++
 	%% 参考文献请看下一节详细介绍。
 	

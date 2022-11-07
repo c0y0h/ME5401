@@ -26,6 +26,22 @@ Q=eye(9)*20;
 R=[1 0;
    0 1]*5;
 K=lqr(Aba,Bba,Q,R,0);
+% K=lqr_control(Aba,Bba,Q,R);
+
+M = [ Aba   -Bba/R*Bba';
+     -Q   -Aba'];
+
+[evec, eval] = eig(M);
+eval = sum(eval);
+evec_stable = evec(:,find(real(eval)<0));
+% P = evec_stable(,:)
+V = evec_stable(1:9,:);
+U = evec_stable(10:18,:);
+P = U/V;
+
+K = R \ Bba' * P;
+
+
 K1=K(:,1:6);
 K2=K(:,7:9);
 
